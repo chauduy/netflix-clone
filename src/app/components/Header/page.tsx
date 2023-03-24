@@ -1,86 +1,55 @@
 "use client";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
+import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 function Header() {
-    const showMobileMenu = () => {
-        document.getElementById("menu-mobile")?.classList.remove("hidden");
-        document.getElementById("arrow-menu")?.classList.remove("hidden");
-    };
+    const [isScrolled, setIsScrolled] = useState<Boolean>(false);
 
-    const hideMobileMenu = () => {
-        document.getElementById("menu-mobile")?.classList.add("hidden");
-        document.getElementById("arrow-menu")?.classList.add("hidden");
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
-        <header>
-            <div className="relative flex items-center space-x-6 pl-5 md:space-x-10">
+        <header className={isScrolled && "bg-[#141414"}>
+            <div className="relative flex items-center space-x-4 lg:space-x-8">
                 <img
                     src="/netflix.png"
-                    className="w-[40px] cursor-pointer object-contain md:h-[100px] md:w-[100px]"
+                    className="w-[40px] cursor-pointer object-contain md:w-[70px] lg:w-[90px]"
                 />
 
-                <ul>
-                    <li
-                        className="navigationMenu"
-                        onMouseOver={showMobileMenu}
-                        onMouseLeave={hideMobileMenu}
-                    >
-                        <div className="flex items-center space-x-1 text-sm font-medium">
-                            <div className="text-[7px]">Browse</div>
-                            <ChevronDownIcon className="mt-1 h-4 w-4" />
-                        </div>
-                        <div id="arrow-menu" className="arrow hidden"></div>
-                        <ul
-                            id="menu-mobile"
-                            className="absolute top-[60px] left-0 flex hidden h-[300px] w-[260px] flex-col items-center justify-center border-t-2 border-[#ffffff] bg-[#000000e6] text-[13px] font-normal"
-                            onMouseOver={showMobileMenu}
-                        >
-                            <li
-                                className="navItemMobile"
-                                onMouseOver={showMobileMenu}
-                            >
-                                Home
-                            </li>
-                            <li
-                                className="navItemMobile"
-                                onMouseOver={showMobileMenu}
-                            >
-                                TV Shows
-                            </li>
-                            <li
-                                className="navItemMobile"
-                                onMouseOver={showMobileMenu}
-                            >
-                                Movie
-                            </li>
-                            <li
-                                className="navItemMobile"
-                                onMouseOver={showMobileMenu}
-                            >
-                                New & Popular
-                            </li>
-                            <li
-                                className="navItemMobile"
-                                onMouseOver={showMobileMenu}
-                            >
-                                My List
-                            </li>
-                            <li
-                                className="navItemMobile"
-                                onMouseOver={showMobileMenu}
-                            >
-                                Browse by Languages
-                            </li>
-                        </ul>
-                    </li>
+                <ul className="hidden items-center space-x-4 lg:flex">
                     <li className="navigationTab">Home</li>
                     <li className="navigationTab">TV Shows</li>
-                    <li className="navigationTab">Movie</li>
+                    <li className="navigationTab">Movies</li>
                     <li className="navigationTab">New & Popular</li>
                     <li className="navigationTab">My List</li>
                     <li className="navigationTab">Browse by Languages</li>
                 </ul>
+            </div>
+            <div className="flex items-center space-x-4 font-light">
+                <MagnifyingGlassIcon className="h-6 w-6" />
+                <p className="hidden text-[13px] font-normal lg:block">Kids</p>
+                <BellIcon className="h-6 w-6" />
+                <Link href="/account">
+                    <img
+                        src="https://rb.gy/g1pwyx"
+                        alt=""
+                        className="cursor-pointer rounded"
+                    />
+                </Link>
             </div>
         </header>
     );

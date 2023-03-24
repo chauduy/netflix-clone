@@ -1,33 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     body {
-        @apply bg-[#141414] text-white;
+        @apply bg-[#141414] font-roboto text-[#fff];
+    }
+
+    header {
+        @apply fixed top-0 z-50 flex w-full items-center justify-between px-5 py-1 transition-all md:px-8 lg:px-10;
     }
 }
 
 @layer components {
-    .navigationMenu {
-        @apply cursor-pointer;
-    }
-
     .navigationTab {
-        @apply hidden;
-    }
-
-    .navItemMobile {
-        @apply flex h-[50px] w-[260px] items-center justify-center text-[#b3b3b3] hover:bg-[#2a2a2a] hover:font-bold hover:text-white;
-    }
-
-    .arrow {
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-bottom: 6px solid #e5e5e5;
-
-        @apply absolute top-[55px] left-[25%];
+        @apply text-[12px] text-[#e5e5e5] transition duration-[.4s] hover:text-[#b3b3b3] xl:text-[15px];
     }
 }
