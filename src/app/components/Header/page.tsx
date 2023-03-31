@@ -23,7 +23,7 @@ function Header() {
     }, []);
 
     return (
-        <header className={isScrolled && "bg-[#141414"}>
+        <header className={`${isScrolled && "bg-[#141414]"}`}>
             <div className="relative flex items-center space-x-4 lg:space-x-8">
                 <img
                     src="/netflix.png"
