@@ -7,5 +7,8 @@ module.exports = {
             roboto: ["Roboto", "sans-serif"],
         },
     },
-    plugins: [require("tailwindcss-textshadow")],
+    plugins: [
+        require("tailwindcss-textshadow"),
+        require("tailwind-scrollbar-hide"),
+    ],
 };
