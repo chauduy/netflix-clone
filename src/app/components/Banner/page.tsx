@@ -1,10 +1,10 @@
 "use client";
 import { Movie } from "@/app/type";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { baseUrl } from "@/app/constants";
 import { FaPlay } from "react-icons/fa";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { CgInfo } from "react-icons/cg";
 
 interface Props {
     netflixOriginals: [Movie];
@@ -20,7 +20,6 @@ function Banner({ netflixOriginals }: Props) {
             ]
         );
     }, [netflixOriginals]);
-    console.log("movie", movie);
 
     return (
         <div className="flex flex-col space-y-2 py-16 md:h-[55vh] md:justify-end md:space-y-4 lg:h-[95vh] lg:pb-12">
@@ -46,7 +45,7 @@ function Banner({ netflixOriginals }: Props) {
                     Play
                 </button>
                 <button className="bannerButton bg-[gray]/70">
-                    <InformationCircleIcon className="h-5 w-5 md:h-8 md:w-8" />
+                    <CgInfo className="h-5 w-5 md:h-8 md:w-8" />
                     More Info
                 </button>
             </div>

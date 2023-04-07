@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import { BellIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { VscBell } from "react-icons/vsc";
+import { RxMagnifyingGlass } from "react-icons/rx";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
@@ -26,7 +27,7 @@ function Header() {
         <header className={`${isScrolled && "bg-[#141414]"}`}>
             <div className="relative flex items-center space-x-4 lg:space-x-8">
                 <img
-                    src="/netflix.png"
+                    src="https://rb.gy/ulxxee"
                     className="w-[40px] cursor-pointer object-contain md:w-[70px] lg:w-[90px]"
                 />
 
@@ -40,9 +41,9 @@ function Header() {
                 </ul>
             </div>
             <div className="flex items-center space-x-4 font-light">
-                <MagnifyingGlassIcon className="h-6 w-6" />
+                <RxMagnifyingGlass className="h-6 w-6" />
                 <p className="hidden text-[13px] font-normal lg:block">Kids</p>
-                <BellIcon className="h-6 w-6" />
+                <VscBell className="h-6 w-6" />
                 <Link href="/account">
                     <img
                         src="https://rb.gy/g1pwyx"

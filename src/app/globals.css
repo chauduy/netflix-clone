@@ -5,15 +5,19 @@
 
 @layer base {
     body {
-        @apply w-full bg-[#141414] font-roboto text-[#fff];
+        @apply w-full bg-[#141414] font-roboto text-[#fff] scrollbar-thin scrollbar-track-black scrollbar-thumb-red-600;
     }
 
     header {
-        @apply fixed top-0 z-50 flex w-full items-center justify-between px-5 py-1 transition-all md:px-8 lg:px-10;
+        @apply fixed top-0 z-50 flex w-full items-center justify-between px-5 py-2 transition-all md:px-8 md:py-4 lg:px-16 lg:py-6;
     }
 
     .bannerButton {
         @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        height: 10px !important;
     }
 }
 

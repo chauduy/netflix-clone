@@ -1,9 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
 import { Movie } from "@/app/type";
-import React from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Thumbnail from "../Thumbnail/page";
+import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 
 interface Props {
     title: string;
@@ -23,22 +22,20 @@ function Row({ title, movies }: Props) {
                     ? scrollLeft - clientWidth
                     : scrollLeft + clientWidth;
             rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
-            if (direction === "left") {
-                if (scrollTo <= 0) {
-                    setIsMoved(false);
-                }
+            if (direction === "left" && scrollTo <= 0) {
+                setIsMoved(false);
             }
         }
     };
 
     return (
-        <div className="h-40 space-y-0.5 md:space-y-2">
-            <h2 className="w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl">
+        <div className="h-32 space-y-0.5 md:h-36 md:space-y-2 lg:h-40">
+            <h2 className="w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-base lg:text-2xl">
                 {title}
             </h2>
             <div className="group relative -ml-2">
-                <ChevronLeftIcon
-                    className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 ${
+                <RxChevronLeft
+                    className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
                         !isMoved && "hidden"
                     }`}
                     onClick={() => handleClick("left")}
@@ -53,8 +50,8 @@ function Row({ title, movies }: Props) {
                     ))}
                 </div>
 
-                <ChevronRightIcon
-                    className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100"
+                <RxChevronRight
+                    className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125"
                     onClick={() => handleClick("right")}
                 />
             </div>
