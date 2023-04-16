@@ -2,50 +2,53 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 function Footer() {
     return (
-        <div className="py-10 pl-5 md:pl-8 lg:pl-16">
-            <div className="flex items-center space-x-7">
-                <FaFacebookF className="h-6 w-6" />
-                <FaInstagram className="h-6 w-6" />
-                <FaTwitter className="h-6 w-6" />
-                <FaYoutube className="h-6 w-6" />
+        <div className="h-fit py-5 pl-5 md:py-8 md:pl-8 lg:py-10 lg:pl-60">
+            <div className="flex items-center space-x-7 pl-2">
+                <FaFacebookF className="h-5 w-5" />
+                <FaInstagram className="h-5 w-5" />
+                <FaTwitter className="h-5 w-5" />
+                <FaYoutube className="h-5 w-5" />
             </div>
-            <div className="max-h-6">
-                <a href="" className="block">
-                    Audio Description
-                </a>
-                <a href="" className="block">
-                    Gift Cards
-                </a>
-                <a href="" className="block">
-                    Investor Relations
-                </a>
-                <a href="" className="block">
-                    Term of Use
-                </a>
-                <a href="" className="block">
-                    Legal Notices
-                </a>
-                <a href="" className="block">
-                    Corporate Information
-                </a>
-                <a href="" className="block">
-                    Help Center
-                </a>
-                <a href="" className="block">
-                    Media Center
-                </a>
-                <a href="" className="block">
-                    Jobs
-                </a>
-                <a href="" className="block">
-                    Privacy
-                </a>
-                <a href="" className="block">
-                    Cookie Preferences
-                </a>
-                <a href="" className="block">
-                    Contact Us
-                </a>
+            <div className="mt-2 grid grid-cols-2 md:grid-cols-4 lg:max-w-[70vw]">
+                <div className="footerLink">
+                    <a href="">Audio Description</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Gift Cards</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Investor Relations</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Term of Use</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Legal Notices</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Corporate Information</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Help Center</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Media Center</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Jobs</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Privacy</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Cookie Preferences</a>
+                </div>
+                <div className="footerLink">
+                    <a href="">Contact Us</a>
+                </div>
+            </div>
+            <div className="mt-5 text-sm text-gray-500">
+                © 1997-2023 Netflix, Inc.
             </div>
         </div>
     );
