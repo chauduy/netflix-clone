@@ -10,42 +10,42 @@ function Footer() {
                 <FaYoutube className="h-5 w-5" />
             </div>
             <div className="mt-2 grid grid-cols-2 md:grid-cols-4 lg:max-w-[70vw]">
-                <div className="footerLink">
-                    <a href="">Audio Description</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Gift Cards</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Investor Relations</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Term of Use</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Legal Notices</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Corporate Information</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Help Center</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Media Center</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Jobs</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Privacy</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Cookie Preferences</a>
-                </div>
-                <div className="footerLink">
-                    <a href="">Contact Us</a>
-                </div>
+                <a href="" className="footerLinkApp">
+                    Audio Description
+                </a>
+                <a href="" className="footerLinkApp">
+                    Gift Cards
+                </a>
+                <a href="" className="footerLinkApp">
+                    Investor Relations
+                </a>
+                <a href="" className="footerLinkApp">
+                    Term of Use
+                </a>
+                <a href="" className="footerLinkApp">
+                    Legal Notices
+                </a>
+                <a href="" className="footerLinkApp">
+                    Corporate Information
+                </a>
+                <a href="" className="footerLinkApp">
+                    Help Center
+                </a>
+                <a href="" className="footerLinkApp">
+                    Media Center
+                </a>
+                <a href="" className="footerLinkApp">
+                    Jobs
+                </a>
+                <a href="" className="footerLinkApp">
+                    Privacy
+                </a>
+                <a href="" className="footerLinkApp">
+                    Cookie Preferences
+                </a>
+                <a href="" className="footerLinkApp">
+                    Contact Us
+                </a>
             </div>
             <div className="mt-5 text-sm text-gray-500">
                 © 1997-2023 Netflix, Inc.
