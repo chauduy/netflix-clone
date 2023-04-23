@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { VscBell } from "react-icons/vsc";
 import { RxMagnifyingGlass } from "react-icons/rx";
+import useAuth from "@/app/hook/useAuth";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
+    const { logOut } = useAuth();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -44,13 +46,13 @@ function Header() {
                 <RxMagnifyingGlass className="h-6 w-6" />
                 <p className="hidden text-[13px] font-normal lg:block">Kids</p>
                 <VscBell className="h-6 w-6" />
-                <Link href="/account">
+                <button onClick={logOut}>
                     <img
                         src="https://rb.gy/g1pwyx"
                         alt=""
                         className="cursor-pointer rounded"
                     />
-                </Link>
+                </button>
             </div>
         </header>
     );

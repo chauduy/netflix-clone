@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import Footer from "./components/Footer/page";
+import useAuth from "../hook/useAuth";
 
 interface Inputs {
     email: string;
@@ -11,6 +12,7 @@ interface Inputs {
 
 function login() {
     const [showPolicy, setShowPolicy] = useState<Boolean>(false);
+    const { signIn } = useAuth();
     const {
         register,
         handleSubmit,
@@ -18,10 +20,13 @@ function login() {
         formState: { errors },
     } = useForm<Inputs>();
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        console.log(data);
+        await signIn(data.email, data.password);
+    };
 
     return (
-        <div className="relative flex h-screen w-full flex-col bg-black md:h-[120vh] md:items-center md:bg-transparent">
+        <div className="relative flex h-screen w-full flex-col bg-black md:h-[160vh] md:items-center md:bg-transparent">
             <a href="/">
                 <img
                     src="https://rb.gy/ulxxee"
@@ -36,10 +41,10 @@ function login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 mb-5 h-[600px] space-y-8 rounded bg-black/75 py-7 px-6"
+                className="mt-24 h-fit space-y-8 rounded bg-black/75 py-7 px-6 md:h-[750px] md:max-w-md md:px-14 md:py-16"
             >
                 <h1 className="text-4xl font-semibold">Sign In</h1>
-                <div className="space-y-2">
+                <div className="h-fit space-y-2">
                     <input
                         type="email"
                         placeholder="Email or phone number"
@@ -61,8 +66,6 @@ function login() {
                         }`}
                         {...register("password", {
                             required: true,
-                            min: 4,
-                            max: 60,
                         })}
                     />
                     {errors.password && (
@@ -72,25 +75,27 @@ function login() {
                         </p>
                     )}
                 </div>
-                <button
-                    className="w-full rounded bg-[#E50914] py-3 font-semibold"
-                    type="submit"
-                >
-                    Sign In
-                </button>
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                        <input type="checkbox" />
-                        <p className="ml-1 cursor-pointer text-[13px] text-[#b3b3b3]">
-                            Remember me
-                        </p>
-                    </div>
-                    <a
-                        href="/support"
-                        className="text-[13px] text-[#b3b3b3] hover:underline"
+                <div>
+                    <button
+                        className="w-full rounded bg-[#E50914] py-3 font-semibold"
+                        type="submit"
                     >
-                        Need help?
-                    </a>
+                        Sign In
+                    </button>
+                    <div className="mt-3 flex items-center justify-between">
+                        <div className="flex items-center">
+                            <input type="checkbox" />
+                            <p className="ml-1 cursor-pointer text-[13px] text-[#b3b3b3]">
+                                Remember me
+                            </p>
+                        </div>
+                        <a
+                            href="/support"
+                            className="text-[13px] text-[#b3b3b3] hover:underline"
+                        >
+                            Need help?
+                        </a>
+                    </div>
                 </div>
                 <div className="text-[16px] font-normal text-[#737373]">
                     New to Netflix?{" "}
