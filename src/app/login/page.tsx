@@ -77,7 +77,7 @@ function login() {
                 </div>
                 <div>
                     <button
-                        className="w-full rounded bg-[#E50914] py-3 font-semibold"
+                        className="w-full rounded bg-[#E50914] py-3 font-normal"
                         type="submit"
                     >
                         Sign In

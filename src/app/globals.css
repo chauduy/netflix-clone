@@ -1,11 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "NetflixSans";
+    src: url("font/NetflixSans_W_Rg.woff2");
+}
+
 @layer base {
     body {
-        @apply w-full bg-[#141414] font-montserrat text-[#fff] scrollbar-thin scrollbar-track-black scrollbar-thumb-red-600;
+        @apply w-full bg-[#141414] font-netflix text-[#fff] scrollbar-thin scrollbar-track-black scrollbar-thumb-red-600;
     }
 
     header {

@@ -3,7 +3,6 @@ import { AuthProvider } from "./hook/useAuth";
 
 export const metadata = {
     title: "Home - Netflix",
-    icons: "/netflix-icon.png",
 };
 
 export default function RootLayout({

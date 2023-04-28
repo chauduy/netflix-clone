@@ -71,4 +71,9 @@ function Home() {
     );
 }
 
+export const metadata = {
+    title: "Home - Netflix",
+    icons: "/netflix-icon.png",
+};
+
 export default Home;

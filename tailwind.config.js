@@ -9,7 +9,7 @@ module.exports = {
             },
         },
         fontFamily: {
-            montserrat: ["Montserrat", "sans-serif"],
+            netflix: ["NetflixSans"],
         },
     },
     plugins: [

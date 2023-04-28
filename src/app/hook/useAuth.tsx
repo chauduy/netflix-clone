@@ -39,6 +39,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [error, setError] = useState(null);
     const [initialLoading, setInitialLoading] = useState<Boolean>(true);
 
+    // persisting user
     useEffect(
         () =>
             onAuthStateChanged(auth, (user) => {
