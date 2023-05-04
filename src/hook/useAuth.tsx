@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { createContext, useState, useEffect, useMemo, useContext } from "react";
-import { auth } from "../../../firebase";
+import { auth } from "../../firebase";
 
 interface IAuth {
     user: User | null;
@@ -16,7 +16,7 @@ interface IAuth {
     signIn: (email: string, password: string) => Promise<void>;
     logOut: () => Promise<void>;
     error: string | null;
-    loading: Boolean;
+    loading: boolean;
 }
 
 const AuthContext = createContext<IAuth>({
@@ -33,11 +33,11 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-    const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState<Boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState(null);
-    const [initialLoading, setInitialLoading] = useState<Boolean>(true);
+    const [initialLoading, setInitialLoading] = useState<boolean>(true);
+    const router = useRouter();
 
     // persisting user
     useEffect(
@@ -52,6 +52,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     setUser(null);
                     setLoading(true);
                     router.push("/login");
+                    setLoading(false);
                 }
 
                 setInitialLoading(false);
@@ -119,7 +120,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     return (
         <AuthContext.Provider value={memoedValue}>
-            {!initialLoading && children}
+            {children}
         </AuthContext.Provider>
     );
 }

@@ -1,5 +1,5 @@
-import { Movie } from "@/app/type";
 import Image from "next/image";
+import { Movie } from "@/type";
 
 interface Props {
     movie: Movie;

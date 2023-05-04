@@ -1,10 +1,12 @@
 "use client";
-import { Movie } from "@/app/type";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { baseUrl } from "@/app/constants";
 import { FaPlay } from "react-icons/fa";
 import { CgInfo } from "react-icons/cg";
+import { useEffect, useState } from "react";
+import { Movie } from "@/type";
+import { baseUrl } from "@/constants";
+import { useAppDispatch } from "@/redux/hooks";
+import { setOpen } from "@/redux/features/modal/modalSlice";
 
 interface Props {
     netflixOriginals: [Movie];
@@ -12,6 +14,7 @@ interface Props {
 
 function Banner({ netflixOriginals }: Props) {
     const [movie, setMovie] = useState<Movie | null>(null);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         setMovie(
@@ -31,6 +34,7 @@ function Banner({ netflixOriginals }: Props) {
                     alt="Banner Image"
                     fill
                     className="object-cover"
+                    sizes=""
                 />
             </div>
             <h1 className="max-w-md text-sm font-bold md:text-xl lg:text-7xl">
@@ -44,7 +48,13 @@ function Banner({ netflixOriginals }: Props) {
                     <FaPlay className="h-4 w-4 text-black md:h-7 md:w-7" />
                     Play
                 </button>
-                <button className="bannerButton bg-[gray]/70">
+                <button
+                    className="bannerButton bg-[gray]/70"
+                    onClick={() => {
+                        console.log("click");
+                        dispatch(setOpen(true));
+                    }}
+                >
                     <CgInfo className="h-5 w-5 md:h-8 md:w-8" />
                     More Info
                 </button>

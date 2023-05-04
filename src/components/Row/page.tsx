@@ -1,8 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
-import { Movie } from "@/app/type";
-import Thumbnail from "../Thumbnail/page";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
+import { Movie } from "@/type";
+import Thumbnail from "@/components/Thumbnail/page";
 
 interface Props {
     title: string;

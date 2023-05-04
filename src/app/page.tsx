@@ -1,9 +1,12 @@
+"use client";
 import { use } from "react";
-import Header from "./components/Header/page";
-import Banner from "./components/Banner/page";
-import Row from "./components/Row/page";
-import requests from "./utils/requests";
-import Footer from "./components/Footer/page";
+import Header from "@/components/Header/page";
+import Banner from "@/components/Banner/page";
+import Row from "@/components/Row/page";
+import requests from "@/utils/requests";
+import Footer from "@/components/Footer/page";
+import Modal from "@/components/Modal/page";
+import { useAppSelector } from "@/redux/hooks";
 
 async function getData() {
     const [
@@ -49,6 +52,8 @@ function Home() {
         romanceMovies,
         documentaries,
     } = use(getData());
+    const openModal = useAppSelector((state) => state.modal.open);
+    console.log("openModal", openModal);
 
     return (
         <div className="relative h-[50vh] bg-gradient-to-b md:h-[70vh] lg:h-[140vh]">
@@ -66,14 +71,14 @@ function Home() {
                 </section>
             </main>
             <Footer />
-            {/* <Modal /> */}
+            {/* {openModal && <Modal />} */}
         </div>
     );
 }
 
-export const metadata = {
-    title: "Home - Netflix",
-    icons: "/netflix-icon.png",
-};
+// export const metadata = {
+//     title: "Home - Netflix",
+//     icons: "/netflix-icon.png",
+// };
 
 export default Home;

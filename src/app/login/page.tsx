@@ -2,17 +2,20 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
-import Footer from "./components/Footer/page";
-import useAuth from "../hook/useAuth";
+import { useRouter } from "next/navigation";
+import CircularProgress from "@mui/material/CircularProgress";
+import Footer from "@/components/Footer/page";
+import useAuth from "@/hook/useAuth";
 
 interface Inputs {
     email: string;
     password: string;
 }
 
-function login() {
+function Login() {
     const [showPolicy, setShowPolicy] = useState<Boolean>(false);
-    const { signIn } = useAuth();
+    const { signIn, loading, user } = useAuth();
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -21,9 +24,12 @@ function login() {
     } = useForm<Inputs>();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        console.log(data);
         await signIn(data.email, data.password);
     };
+
+    if (user) {
+        return router.push("/");
+    }
 
     return (
         <div className="relative flex h-screen w-full flex-col bg-black md:h-[160vh] md:items-center md:bg-transparent">
@@ -77,10 +83,14 @@ function login() {
                 </div>
                 <div>
                     <button
-                        className="w-full rounded bg-[#E50914] py-3 font-normal"
+                        className="flex w-full items-center justify-center rounded bg-[#E50914] py-3 font-bold"
                         type="submit"
                     >
-                        Sign In
+                        {loading === false ? (
+                            "Sign In"
+                        ) : (
+                            <CircularProgress className="!h-7 !w-7 !text-white" />
+                        )}
                     </button>
                     <div className="mt-3 flex items-center justify-between">
                         <div className="flex items-center">
@@ -109,7 +119,7 @@ function login() {
                     {!showPolicy && (
                         <button
                             className="inline cursor-pointer text-[#0071eb] hover:underline"
-                            onClick={() => setShowPolicy(true)}
+                            // onClick={() => setShowPolicy(true)}
                         >
                             Learn more.
                         </button>
@@ -147,4 +157,4 @@ function login() {
     );
 }
 
-export default login;
+export default Login;

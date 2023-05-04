@@ -1,9 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { VscBell } from "react-icons/vsc";
 import { RxMagnifyingGlass } from "react-icons/rx";
-import useAuth from "@/app/hook/useAuth";
+import useAuth from "@/hook/useAuth";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
