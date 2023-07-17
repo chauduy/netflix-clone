@@ -4,7 +4,7 @@ import {
     onAuthStateChanged,
     signInWithEmailAndPassword,
     signOut,
-    User,
+    User
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { createContext, useState, useEffect, useMemo, useContext } from "react";
@@ -34,31 +34,35 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [initialLoading, setInitialLoading] = useState<boolean>(true);
+    const [initialLoading, setInitialLoading] = useState(true);
     const router = useRouter();
 
-    // persisting user
-    useEffect(
-        () =>
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    // Logged in...
-                    setUser(user);
-                    setLoading(false);
-                } else {
-                    // Not logged in...
-                    setUser(null);
-                    setLoading(true);
-                    router.push("/login");
-                    setLoading(false);
-                }
+    useEffect(() => {
+        if (!user) {
+            router.push("/login")
+        }
+    }, [])
 
-                setInitialLoading(false);
-            }),
-        [auth]
-    );
+    // Persisting the user
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Logged in...
+                setUser(user);
+                setLoading(false);
+            } else {
+                // Not logged in...
+                setUser(null);
+                setLoading(true);
+                router.push("/login");
+                setLoading(false)
+            }
+
+            setInitialLoading(false);
+        });
+    }, [auth]);
 
     const signUp = async (email: string, password: string) => {
         setLoading(true);
@@ -120,7 +124,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     return (
         <AuthContext.Provider value={memoedValue}>
-            {children}
+            {initialLoading ? <div>Loading ...</div> : children}
         </AuthContext.Provider>
     );
 }

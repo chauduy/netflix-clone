@@ -1,6 +1,6 @@
 import "./globals.css";
-import { Providers } from "@/redux/provider";
 import { AuthProvider } from "@/hook/useAuth";
+import { AppProvider } from "@/redux/provider";
 
 export const metadata = {
     title: "Home - Netflix",
@@ -14,9 +14,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <Providers>
-                    <AuthProvider>{children}</AuthProvider>
-                </Providers>
+                <AuthProvider>
+                    <AppProvider>
+                        {children}
+                    </AppProvider>
+                </AuthProvider>
             </body>
         </html>
     );

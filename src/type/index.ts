@@ -14,3 +14,18 @@ export interface Movie {
     vote_average: number;
     vote_count: number;
 }
+
+export interface Genre {
+    id: number;
+    name: string;
+}
+
+export interface MovieType {
+    type:
+        | "Bloopers"
+        | "Featurette"
+        | "Behind the Scenes"
+        | "Clip"
+        | "Trailer"
+        | "Teaser";
+}

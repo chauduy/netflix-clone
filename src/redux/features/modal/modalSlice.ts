@@ -1,25 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { Movie } from "@/type";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ModalState {
     open: boolean;
+    movie: Movie | null;
 }
 
 const initialState: ModalState = {
     open: false,
+    movie: null,
 };
 
-export const modalSlice = createSlice({
+const modalSlice = createSlice({
     name: "modal",
     initialState,
     reducers: {
-        setOpen: (state, action: PayloadAction<boolean>) => {
-            console.log("innn");
-            state.open = action.payload;
+        openModal: (state, action: PayloadAction<Movie | null>) => {
+            state.open = true;
+            state.movie = action.payload;
+        },
+        closeModal: (state) => {
+            state.open = false;
         },
     },
 });
 
-export const { setOpen } = modalSlice.actions;
+export const { openModal, closeModal } = modalSlice.actions;
 
 export default modalSlice.reducer;
