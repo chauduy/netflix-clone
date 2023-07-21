@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 
-function Footer() {
+function LoginFooter() {
     const [language, setLanguage] = useState<string>("en");
 
     return (
-        <div className="h-fit w-full bg-black/75 px-6 py-7 md:absolute md:bottom-0 md:px-9 md:py-12 lg:pl-96">
+        <div className="absolute bottom-0 h-fit w-full bg-black/75 px-6 py-7 md:px-9 md:py-12 md:pl-56 xl:pl-96">
             <a
                 href="https://help.netflix.com/en/contactus"
                 className="text-[16px] font-normal text-[#737373] hover:underline"
@@ -73,4 +73,4 @@ function Footer() {
     );
 }
 
-export default Footer;
+export default LoginFooter;

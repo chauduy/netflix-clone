@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import CircularProgress from "@mui/material/CircularProgress";
 import Footer from "@/components/Footer/page";
 import useAuth from "@/hook/useAuth";
+import LoginFooter from "./components/LoginFooter/page";
 
 interface Inputs {
     email: string;
@@ -27,12 +28,8 @@ function Login() {
         await signIn(data.email, data.password);
     };
 
-    if (user) {
-        return router.push("/");
-    }
-
     return (
-        <div className="relative flex h-screen w-full flex-col bg-black md:h-[160vh] md:items-center md:bg-transparent">
+        <div className="relative flex h-[930px] w-full flex-col bg-black sm:h-[1100px] md:items-center md:bg-transparent">
             <a href="/">
                 <img
                     src="https://rb.gy/ulxxee"
@@ -47,7 +44,7 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 h-fit space-y-8 rounded bg-black/75 py-7 px-6 md:h-[750px] md:max-w-md md:px-14 md:py-16"
+                className="mt-24  space-y-8 rounded bg-black/75 py-7 px-6 md:h-[660px] md:max-w-md md:px-14 md:py-16"
             >
                 <h1 className="text-4xl font-semibold">Sign In</h1>
                 <div className="h-fit space-y-2">
@@ -119,7 +116,7 @@ function Login() {
                     {!showPolicy && (
                         <button
                             className="inline cursor-pointer text-[#0071eb] hover:underline"
-                            // onClick={() => setShowPolicy(true)}
+                            onClick={() => setShowPolicy(true)}
                         >
                             Learn more.
                         </button>
@@ -151,8 +148,8 @@ function Login() {
                     )}
                 </div>
             </form>
-            <hr className="h-px border-[#737373] sm:hidden" />
-            <Footer />
+            <hr className="border border-[#737373] sm:hidden" />
+            <LoginFooter />
         </div>
     );
 }
