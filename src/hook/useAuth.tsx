@@ -4,11 +4,15 @@ import {
     onAuthStateChanged,
     signInWithEmailAndPassword,
     signOut,
-    User
+    User,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { createContext, useState, useEffect, useMemo, useContext } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { auth } from "../../firebase";
+import AppLoading from "@/components/AppLoading/page";
+import { customErrorMessage } from "@/helper";
+import { FirebaseError } from "firebase/app";
 
 interface IAuth {
     user: User | null;
@@ -41,9 +45,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     useEffect(() => {
         if (!user) {
-            router.push("/login")
+            router.push("/auth");
         }
-    }, [])
+    }, []);
 
     // Persisting the user
     useEffect(() => {
@@ -56,8 +60,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 // Not logged in...
                 setUser(null);
                 setLoading(true);
-                router.push("/login");
-                setLoading(false)
+                router.push("/auth");
+                setLoading(false);
             }
 
             setInitialLoading(false);
@@ -75,9 +79,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
             if (userCredential) {
                 setUser(userCredential.user);
             }
+            toast.success("Create account successfully");
+            router.push("/");
             setLoading(false);
-        } catch (error: any) {
-            alert(error.message);
+        } catch (error: FirebaseError | any) {
+            customErrorMessage(error);
         } finally {
             setLoading(false);
         }
@@ -94,10 +100,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
             if (userCredential) {
                 setUser(userCredential.user);
             }
+            toast.success("Login successfully");
             router.push("/");
             setLoading(false);
-        } catch (error: any) {
-            alert(error.message);
+        } catch (error: FirebaseError | any) {
+            customErrorMessage(error);
         } finally {
             setLoading(false);
         }
@@ -124,7 +131,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     return (
         <AuthContext.Provider value={memoedValue}>
-            {initialLoading ? <div>Loading ...</div> : children}
+            {initialLoading ? <AppLoading /> : children}
+            <Toaster position="bottom-center" />
         </AuthContext.Provider>
     );
 }

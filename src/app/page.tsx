@@ -6,6 +6,7 @@ import Row from "@/components/Row/page";
 import requests from "@/utils/requests";
 import Footer from "@/components/Footer/page";
 import Modal from "@/components/Modal/page";
+import Plans from "@/components/Plans/page";
 
 async function getData() {
     const [
@@ -51,6 +52,9 @@ function Home() {
         romanceMovies,
         documentaries,
     } = use(getData());
+    const subscription = false;
+
+    if (subscription === false) return <Plans />;
 
     return (
         <div className="relative h-[50vh] bg-gradient-to-b md:h-[70vh] lg:h-[140vh]">

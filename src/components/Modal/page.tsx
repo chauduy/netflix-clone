@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Modal as MuiModal } from "@mui/material";
-import { HiX } from "react-icons/hi";
 import ReactPlayer from "react-player/youtube";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
 import {
+    HiX,
     HiOutlineThumbUp,
     HiOutlineVolumeOff,
     HiOutlineVolumeUp,

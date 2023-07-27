@@ -2,34 +2,58 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import CircularProgress from "@mui/material/CircularProgress";
-import Footer from "@/components/Footer/page";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import useAuth from "@/hook/useAuth";
 import LoginFooter from "./components/LoginFooter/page";
+import Loader from "@/components/Loader/page";
 
 interface Inputs {
     email: string;
     password: string;
+    confirmPassword: string | null | undefined;
 }
 
 function Login() {
-    const [showPolicy, setShowPolicy] = useState<Boolean>(false);
-    const { signIn, loading, user } = useAuth();
-    const router = useRouter();
+    const [showPolicy, setShowPolicy] = useState<boolean>(false);
+    const [isSignUp, setIsSignUp] = useState<boolean>(false);
+    const { signIn, loading, signUp } = useAuth();
+    const formSchema = Yup.object().shape({
+        email: Yup.string()
+            .email("Wrong email format")
+            .min(5, "Minimum 5 symbols")
+            .max(50, "Maximum 50 symbols")
+            .required("Email is required"),
+        password: Yup.string()
+            .min(4, "Your password must contain between 4 to 60 characters")
+            .max(60, "Your password must contain between 4 to 60 characters")
+            .required("Password is required"),
+        confirmPassword: isSignUp
+            ? Yup.string()
+                  .oneOf(
+                      [Yup.ref("password")],
+                      "Password and Confirm Password did not match"
+                  )
+                  .required("Confirm Password is required")
+            : Yup.string().nullable(),
+    });
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm<Inputs>();
+    } = useForm<Inputs>({ resolver: yupResolver(formSchema) });
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        await signIn(data.email, data.password);
+        if (isSignUp) {
+            await signUp(data.email, data.password);
+        } else {
+            await signIn(data.email, data.password);
+        }
     };
 
     return (
-        <div className="relative flex h-[930px] w-full flex-col bg-black sm:h-[1100px] md:items-center md:bg-transparent">
+        <div className="relative flex h-[1100px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
             <a href="/">
                 <img
                     src="https://rb.gy/ulxxee"
@@ -44,9 +68,11 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24  space-y-8 rounded bg-black/75 py-7 px-6 md:h-[660px] md:max-w-md md:px-14 md:py-16"
+                className="mt-24 space-y-8 rounded bg-black/75 py-7 px-6 md:h-[830px] md:max-w-md md:px-14 md:py-16"
             >
-                <h1 className="text-4xl font-semibold">Sign In</h1>
+                <h1 className="text-4xl font-semibold">
+                    {isSignUp ? "Sign Up" : "Sign In"}
+                </h1>
                 <div className="h-fit space-y-2">
                     <input
                         type="email"
@@ -58,7 +84,7 @@ function Login() {
                     />
                     {errors.email && (
                         <p className="text-sm  text-[#e87c03]">
-                            Please enter a valid email.
+                            {errors.email.message}
                         </p>
                     )}
                     <input
@@ -67,15 +93,30 @@ function Login() {
                         className={`input ${
                             errors.password && "border-b-2 border-[#e87c03]"
                         }`}
-                        {...register("password", {
-                            required: true,
-                        })}
+                        {...register("password")}
                     />
                     {errors.password && (
                         <p className="text-sm  text-[#e87c03]">
-                            Your password must contain between 4 and 60
-                            characters.
+                            {errors.password.message}
                         </p>
+                    )}
+                    {isSignUp && (
+                        <>
+                            <input
+                                type="password"
+                                placeholder="Confirm password"
+                                className={`input ${
+                                    errors.confirmPassword &&
+                                    "border-b-2 border-[#e87c03]"
+                                }`}
+                                {...register("confirmPassword")}
+                            />
+                            {errors.confirmPassword && (
+                                <p className="text-sm  text-[#e87c03]">
+                                    {errors.confirmPassword.message}
+                                </p>
+                            )}
+                        </>
                     )}
                 </div>
                 <div>
@@ -84,9 +125,13 @@ function Login() {
                         type="submit"
                     >
                         {loading === false ? (
-                            "Sign In"
+                            isSignUp ? (
+                                "Sign Up"
+                            ) : (
+                                "Sign In"
+                            )
                         ) : (
-                            <CircularProgress className="!h-7 !w-7 !text-white" />
+                            <Loader color="white" />
                         )}
                     </button>
                     <div className="mt-3 flex items-center justify-between">
@@ -104,12 +149,31 @@ function Login() {
                         </a>
                     </div>
                 </div>
-                <div className="text-[16px] font-normal text-[#737373]">
-                    New to Netflix?{" "}
-                    <a href="/register" className="text-white hover:underline">
-                        Sign up now
-                    </a>
-                </div>
+
+                {isSignUp ? (
+                    <div className="text-[16px] font-normal text-[#737373]">
+                        Already have an account?{" "}
+                        <button
+                            type="button"
+                            className="text-white hover:underline"
+                            onClick={() => setIsSignUp(false)}
+                        >
+                            Sign in now
+                        </button>
+                    </div>
+                ) : (
+                    <div className="text-[16px] font-normal text-[#737373]">
+                        New to Netflix?{" "}
+                        <button
+                            type="button"
+                            className="text-white hover:underline"
+                            onClick={() => setIsSignUp(true)}
+                        >
+                            Sign up now
+                        </button>
+                    </div>
+                )}
+
                 <div className="text-[13px] text-[#8c8c8c]">
                     This page is protected by Google reCAPTCHA to ensure you're
                     not a bot.{" "}
