@@ -1,5 +1,5 @@
 import "./globals.css";
-import { AuthProvider } from "@/hook/useAuth";
+import { Toaster } from "react-hot-toast";
 import { AppProvider } from "@/redux/provider";
 
 export const metadata = {
@@ -14,11 +14,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <AuthProvider>
-                    <AppProvider>
-                        {children}
-                    </AppProvider>
-                </AuthProvider>
+                <AppProvider>
+                    {children}
+                    <Toaster position="bottom-center" />
+                </AppProvider>
             </body>
         </html>
     );

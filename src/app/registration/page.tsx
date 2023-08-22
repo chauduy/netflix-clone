@@ -1,23 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import useAuth from "@/hook/useAuth";
-import LoginFooter from "./components/LoginFooter/page";
+import LoginFooter from "@/components/LoginFooter/page";
 import Loader from "@/components/Loader/page";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { signUp } from "@/redux/features/auth/authThunk";
+import { useRouter } from "next/navigation";
+import { customErrorMessage } from "@/helper";
+import { FirebaseError } from "firebase/app";
 
 interface Inputs {
     email: string;
     password: string;
-    confirmPassword: string | null | undefined;
+    confirmPassword: string;
 }
 
 function Login() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
-    const [isSignUp, setIsSignUp] = useState<boolean>(false);
-    const { signIn, loading, signUp } = useAuth();
+    const dispatch = useAppDispatch();
+    const { loading, user } = useAppSelector((state) => state.auth);
+    const router = useRouter();
     const formSchema = Yup.object().shape({
         email: Yup.string()
             .email("Wrong email format")
@@ -28,14 +33,12 @@ function Login() {
             .min(4, "Your password must contain between 4 to 60 characters")
             .max(60, "Your password must contain between 4 to 60 characters")
             .required("Password is required"),
-        confirmPassword: isSignUp
-            ? Yup.string()
-                  .oneOf(
-                      [Yup.ref("password")],
-                      "Password and Confirm Password did not match"
-                  )
-                  .required("Confirm Password is required")
-            : Yup.string().nullable(),
+        confirmPassword: Yup.string()
+            .oneOf(
+                [Yup.ref("password")],
+                "Password and Confirm Password did not match"
+            )
+            .required("Confirm Password is required"),
     });
     const {
         register,
@@ -44,16 +47,27 @@ function Login() {
         formState: { errors },
     } = useForm<Inputs>({ resolver: yupResolver(formSchema) });
 
+    useEffect(() => {
+        if (user !== null) {
+            router.push("/");
+        }
+    }, []);
+
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        if (isSignUp) {
-            await signUp(data.email, data.password);
-        } else {
-            await signIn(data.email, data.password);
+        try {
+            const result = await dispatch(
+                signUp({ email: data.email, password: data.password })
+            );
+            if (signUp.fulfilled.match(result)) {
+                router.push("/");
+            }
+        } catch (error: FirebaseError | any) {
+            customErrorMessage(error);
         }
     };
 
     return (
-        <div className="relative flex h-[1100px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
+        <div className="relative flex h-[1050px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
             <a href="/">
                 <img
                     src="https://rb.gy/ulxxee"
@@ -68,11 +82,9 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 space-y-8 rounded bg-black/75 py-7 px-6 md:h-[830px] md:max-w-md md:px-14 md:py-16"
+                className="mt-24 space-y-8 rounded bg-black/75 py-7 px-6 md:h-[800px] md:max-w-md md:px-14 md:py-16"
             >
-                <h1 className="text-4xl font-semibold">
-                    {isSignUp ? "Sign Up" : "Sign In"}
-                </h1>
+                <h1 className="text-4xl font-semibold">Sign Up</h1>
                 <div className="h-fit space-y-2">
                     <input
                         type="email"
@@ -100,23 +112,19 @@ function Login() {
                             {errors.password.message}
                         </p>
                     )}
-                    {isSignUp && (
-                        <>
-                            <input
-                                type="password"
-                                placeholder="Confirm password"
-                                className={`input ${
-                                    errors.confirmPassword &&
-                                    "border-b-2 border-[#e87c03]"
-                                }`}
-                                {...register("confirmPassword")}
-                            />
-                            {errors.confirmPassword && (
-                                <p className="text-sm  text-[#e87c03]">
-                                    {errors.confirmPassword.message}
-                                </p>
-                            )}
-                        </>
+                    <input
+                        type="password"
+                        placeholder="Confirm password"
+                        className={`input ${
+                            errors.confirmPassword &&
+                            "border-b-2 border-[#e87c03]"
+                        }`}
+                        {...register("confirmPassword")}
+                    />
+                    {errors.confirmPassword && (
+                        <p className="text-sm  text-[#e87c03]">
+                            {errors.confirmPassword.message}
+                        </p>
                     )}
                 </div>
                 <div>
@@ -124,55 +132,20 @@ function Login() {
                         className="flex w-full items-center justify-center rounded bg-[#E50914] py-3 font-bold"
                         type="submit"
                     >
-                        {loading === false ? (
-                            isSignUp ? (
-                                "Sign Up"
-                            ) : (
-                                "Sign In"
-                            )
+                        {loading !== "loading" ? (
+                            "Sign Up"
                         ) : (
                             <Loader color="white" />
                         )}
                     </button>
-                    <div className="mt-3 flex items-center justify-between">
-                        <div className="flex items-center">
-                            <input type="checkbox" />
-                            <p className="ml-1 cursor-pointer text-[13px] text-[#b3b3b3]">
-                                Remember me
-                            </p>
-                        </div>
-                        <a
-                            href="/support"
-                            className="text-[13px] text-[#b3b3b3] hover:underline"
-                        >
-                            Need help?
-                        </a>
-                    </div>
                 </div>
 
-                {isSignUp ? (
-                    <div className="text-[16px] font-normal text-[#737373]">
-                        Already have an account?{" "}
-                        <button
-                            type="button"
-                            className="text-white hover:underline"
-                            onClick={() => setIsSignUp(false)}
-                        >
-                            Sign in now
-                        </button>
-                    </div>
-                ) : (
-                    <div className="text-[16px] font-normal text-[#737373]">
-                        New to Netflix?{" "}
-                        <button
-                            type="button"
-                            className="text-white hover:underline"
-                            onClick={() => setIsSignUp(true)}
-                        >
-                            Sign up now
-                        </button>
-                    </div>
-                )}
+                <div className="text-[16px] font-normal text-[#737373]">
+                    Already have an account?{" "}
+                    <a href="/login" className="text-white hover:underline">
+                        Sign in now
+                    </a>
+                </div>
 
                 <div className="text-[13px] text-[#8c8c8c]">
                     This page is protected by Google reCAPTCHA to ensure you're

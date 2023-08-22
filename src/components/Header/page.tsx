@@ -2,11 +2,21 @@
 import { useState, useEffect } from "react";
 import { VscBell } from "react-icons/vsc";
 import { RxMagnifyingGlass } from "react-icons/rx";
-import useAuth from "@/hook/useAuth";
+import { useRouter } from "next/navigation";
+import { logOut } from "@/redux/features/auth/authThunk";
+import { useAppDispatch } from "@/redux/hooks";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
-    const { logOut } = useAuth();
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        const result = await dispatch(logOut());
+        if (logOut.fulfilled.match(result)) {
+            router.push("/login");
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,7 +55,7 @@ function Header() {
                 <RxMagnifyingGlass className="h-6 w-6" />
                 <p className="hidden text-[13px] font-normal lg:block">Kids</p>
                 <VscBell className="h-6 w-6" />
-                <button onClick={logOut}>
+                <button onClick={handleLogout}>
                     <img
                         src="https://rb.gy/g1pwyx"
                         alt=""

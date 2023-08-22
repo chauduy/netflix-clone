@@ -1,8 +1,19 @@
-import useAuth from "@/hook/useAuth";
+import { useRouter } from "next/navigation";
 import { BsCheckLg } from "react-icons/bs";
+import { logOut } from "@/redux/features/auth/authThunk";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 function Plans() {
-    const { logOut } = useAuth();
+    const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.auth);
+    const router = useRouter();
+    const handleLogout = async () => {
+        const result = await dispatch(logOut());
+        if (logOut.fulfilled.match(result)) {
+            router.push("/auth");
+        }
+    };
+
     return (
         <div>
             <header className="border-b-[1px] border-[#e6e6e6] py-3 md:py-5">
@@ -14,7 +25,7 @@ function Plans() {
                 </a>
                 <button
                     className="text-sm font-medium hover:underline md:text-lg"
-                    onClick={logOut}
+                    onClick={handleLogout}
                 >
                     Sign Out
                 </button>

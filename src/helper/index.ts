@@ -2,9 +2,9 @@ import { firebaseErrorCode } from "@/constants";
 import { FirebaseError } from "firebase/app";
 import { toast } from "react-hot-toast";
 
-export const customErrorMessage = (error: FirebaseError) => {
+export const customErrorMessage = (error: any) => {
     let errorMessage = "";
-    switch (error.code) {
+    switch (error.payload.code) {
         case firebaseErrorCode.invalidUsername:
             errorMessage =
                 "Sorry, we can't find an account with this email. Please try again";
