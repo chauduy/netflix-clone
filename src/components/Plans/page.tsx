@@ -1,22 +1,44 @@
+"use client";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BsCheckLg } from "react-icons/bs";
 import { logOut } from "@/redux/features/auth/authThunk";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { Product } from "@stripe/firestore-stripe-payments";
+import PlanTable from "../PlanTable/page";
+import { loadCheckout } from "@/lib/stripe";
+import Loader from "../Loader/page";
 
-function Plans() {
+interface Props {
+    products: Product[];
+}
+
+function Plans({ products }: Props) {
+    const [selectedPlan, setSelectedPlan] = useState<Product | null>(
+        products[2]
+    );
+    const [isBillingLoading, setBillingLoading] = useState(false);
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.auth);
     const router = useRouter();
+
+    const subscribeToPlan = () => {
+        if (!user) return;
+
+        loadCheckout(selectedPlan?.prices[0].id!);
+        setBillingLoading(true);
+    };
+
     const handleLogout = async () => {
         const result = await dispatch(logOut());
         if (logOut.fulfilled.match(result)) {
-            router.push("/auth");
+            router.push("/login");
         }
     };
 
     return (
         <div>
-            <header className="border-b-[1px] border-[#e6e6e6] py-3 md:py-5">
+            <header className="border-b-[1px] border-[#e6e6e6] bg-[#141414] py-3 md:py-5">
                 <a href="/">
                     <img
                         src="https://rb.gy/ulxxee"
@@ -31,7 +53,7 @@ function Plans() {
                 </button>
             </header>
 
-            <main className="mx-auto max-w-5xl px-5 pt-28 pb-12 transition-all md:px-10">
+            <main className="z-40 mx-auto max-w-5xl px-5 pb-12 pt-28 transition-all md:px-10">
                 <h1 className="mb-3 text-2xl font-medium md:text-3xl">
                     Choose the plan that's right for you
                 </h1>
@@ -52,10 +74,39 @@ function Plans() {
 
                 <div className="mt-4 flex flex-col space-y-4">
                     <div className="flex w-full items-center justify-end self-end md:w-3/5">
-                        <div className="planBox">Basic</div>
-                        <div className="planBox">Standard</div>
-                        <div className="planBox">Premium</div>
+                        {products.map((product) => (
+                            <div
+                                className={`planBox ${
+                                    selectedPlan?.id === product.id
+                                        ? "opacity-100"
+                                        : "opacity-60"
+                                }`}
+                                key={product.id}
+                                onClick={() => setSelectedPlan(product)}
+                            >
+                                {product.name}
+                            </div>
+                        ))}
                     </div>
+
+                    <PlanTable
+                        products={products}
+                        selectedPlan={selectedPlan}
+                    />
+
+                    <button
+                        disabled={!selectedPlan || isBillingLoading}
+                        className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
+                            isBillingLoading && "opacity-60"
+                        }`}
+                        onClick={subscribeToPlan}
+                    >
+                        {isBillingLoading ? (
+                            <Loader color="dark:fill-gray-300" />
+                        ) : (
+                            "Subscribe"
+                        )}
+                    </button>
                 </div>
             </main>
         </div>

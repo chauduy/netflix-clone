@@ -11,6 +11,7 @@ import { signUp } from "@/redux/features/auth/authThunk";
 import { useRouter } from "next/navigation";
 import { customErrorMessage } from "@/helper";
 import { FirebaseError } from "firebase/app";
+import { toast } from "react-hot-toast";
 
 interface Inputs {
     email: string;
@@ -59,10 +60,13 @@ function Login() {
                 signUp({ email: data.email, password: data.password })
             );
             if (signUp.fulfilled.match(result)) {
-                router.push("/");
+                toast.success("Registration success");
+            }
+            if (signUp.rejected.match(result)) {
+                customErrorMessage(result);
             }
         } catch (error: FirebaseError | any) {
-            customErrorMessage(error);
+            console.log(error);
         }
     };
 

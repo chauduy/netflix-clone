@@ -78,7 +78,7 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 space-y-8 rounded bg-black/75 py-7 px-6 md:h-[750px] md:max-w-md md:px-14 md:py-16"
+                className="mt-24 space-y-8 rounded bg-black/75 px-6 py-7 md:h-[750px] md:max-w-md md:px-14 md:py-16"
             >
                 <h1 className="text-4xl font-semibold">Sign In</h1>
                 <div className="h-fit space-y-2">
