@@ -1,16 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoginFooter from "@/components/LoginFooter/page";
 import Loader from "@/components/Loader/page";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { signIn } from "@/redux/features/auth/authThunk";
 import { useRouter } from "next/navigation";
 import { customErrorMessage } from "@/helper";
-import { FirebaseError } from "firebase/app";
 
 interface Inputs {
     email: string;
@@ -20,7 +19,7 @@ interface Inputs {
 function Login() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
     const dispatch = useAppDispatch();
-    const { loading, user } = useAppSelector((state) => state.auth);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const formSchema = Yup.object().shape({
         email: Yup.string()
@@ -40,13 +39,8 @@ function Login() {
         formState: { errors },
     } = useForm<Inputs>({ resolver: yupResolver(formSchema) });
 
-    useEffect(() => {
-        if (user !== null) {
-            router.push("/");
-        }
-    }, []);
-
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        setLoading(true);
         try {
             const result = await dispatch(
                 signIn({ email: data.email, password: data.password })
@@ -60,6 +54,7 @@ function Login() {
         } catch (error) {
             console.log(error);
         }
+        setLoading(false);
     };
 
     return (
@@ -114,11 +109,7 @@ function Login() {
                         className="flex w-full items-center justify-center rounded bg-[#E50914] py-3 font-bold"
                         type="submit"
                     >
-                        {loading !== "loading" ? (
-                            "Sign In"
-                        ) : (
-                            <Loader color="white" />
-                        )}
+                        {!loading ? "Sign In" : <Loader color="white" />}
                     </button>
                     <div className="mt-3 flex items-center justify-between">
                         <div className="flex items-center">

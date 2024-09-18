@@ -5,6 +5,7 @@ import { RxMagnifyingGlass } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { logOut } from "@/redux/features/auth/authThunk";
 import { useAppDispatch } from "@/redux/hooks";
+import Link from "next/link";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
@@ -55,13 +56,13 @@ function Header() {
                 <RxMagnifyingGlass className="h-6 w-6" />
                 <p className="hidden text-[13px] font-normal lg:block">Kids</p>
                 <VscBell className="h-6 w-6" />
-                <button onClick={handleLogout}>
+                <Link href={"/account"}>
                     <img
                         src="https://rb.gy/g1pwyx"
                         alt=""
                         className="cursor-pointer rounded"
                     />
-                </button>
+                </Link>
             </div>
         </header>
     );

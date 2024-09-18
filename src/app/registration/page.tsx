@@ -19,7 +19,7 @@ interface Inputs {
     confirmPassword: string;
 }
 
-function Login() {
+function Registration() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const { loading, user } = useAppSelector((state) => state.auth);
@@ -48,12 +48,6 @@ function Login() {
         formState: { errors },
     } = useForm<Inputs>({ resolver: yupResolver(formSchema) });
 
-    useEffect(() => {
-        if (user !== null) {
-            router.push("/");
-        }
-    }, []);
-
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
             const result = await dispatch(
@@ -61,6 +55,7 @@ function Login() {
             );
             if (signUp.fulfilled.match(result)) {
                 toast.success("Registration success");
+                router.push("/login");
             }
             if (signUp.rejected.match(result)) {
                 customErrorMessage(result);
@@ -86,7 +81,7 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 space-y-8 rounded bg-black/75 py-7 px-6 md:h-[800px] md:max-w-md md:px-14 md:py-16"
+                className="mt-24 space-y-8 rounded bg-black/75 px-6 py-7 md:h-[800px] md:max-w-md md:px-14 md:py-16"
             >
                 <h1 className="text-4xl font-semibold">Sign Up</h1>
                 <div className="h-fit space-y-2">
@@ -195,4 +190,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Registration;

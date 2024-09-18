@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import { AppProvider } from "@/redux/provider";
+import AppProvider from "@/redux/provider";
 import RequireAuth from "@/components/RequireAuth/page";
 
 export const metadata = {
@@ -16,10 +16,8 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <AppProvider>
-                    <RequireAuth>
-                        {children}
-                        <Toaster position="bottom-center" />
-                    </RequireAuth>
+                    {children}
+                    <Toaster position="bottom-center" />
                 </AppProvider>
             </body>
         </html>

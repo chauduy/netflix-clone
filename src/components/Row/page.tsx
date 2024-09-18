@@ -6,7 +6,7 @@ import Thumbnail from "@/components/Thumbnail/page";
 
 interface Props {
     title: string;
-    movies: [Movie];
+    movies: Movie[];
 }
 
 function Row({ title, movies }: Props) {
@@ -35,7 +35,7 @@ function Row({ title, movies }: Props) {
             </h2>
             <div className="group relative -ml-2">
                 <RxChevronLeft
-                    className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
+                    className={`absolute bottom-0 left-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125 ${
                         !isMoved && "hidden"
                     }`}
                     onClick={() => handleClick("left")}
@@ -51,7 +51,7 @@ function Row({ title, movies }: Props) {
                 </div>
 
                 <RxChevronRight
-                    className="absolute top-0 bottom-0 right-2 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125"
+                    className="absolute bottom-0 right-2 top-0 z-40 m-auto h-9 w-9 cursor-pointer opacity-0 transition group-hover:opacity-100 hover:scale-125"
                     onClick={() => handleClick("right")}
                 />
             </div>

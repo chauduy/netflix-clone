@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "NetflixSans";
-    src: url("font/NetflixSans_W_Rg.woff2");
+    src: url("/font/NetflixSans_W_Rg.woff2");
 }
 
 @layer base {

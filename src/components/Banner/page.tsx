@@ -9,7 +9,7 @@ import { openModal } from "@/redux/features/modal/modalSlice";
 import { useAppDispatch } from "@/redux/hooks";
 
 interface Props {
-    netflixOriginals: [Movie];
+    netflixOriginals: Movie[];
 }
 
 function Banner({ netflixOriginals }: Props) {
@@ -26,7 +26,7 @@ function Banner({ netflixOriginals }: Props) {
 
     return (
         <div className="flex flex-col space-y-2 py-16 md:h-[55vh] md:justify-end md:space-y-4 lg:h-[95vh] lg:pb-12">
-            <div className="absolute top-0 left-0 -z-10 h-[50vh] w-full md:h-[70vh] lg:h-[140vh]">
+            <div className="absolute left-0 top-0 -z-10 h-[50vh] w-full md:h-[70vh] lg:h-[140vh]">
                 <Image
                     src={`${baseUrl}${
                         movie?.backdrop_path || movie?.poster_path

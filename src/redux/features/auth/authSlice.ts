@@ -9,7 +9,7 @@ interface AuthState {
 
 const initialState: AuthState = {
     loading: "idle",
-    user: null,
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) as User : null,
 };
 
 const authSlice = createSlice({
@@ -30,6 +30,7 @@ const authSlice = createSlice({
         builder.addCase(signIn.fulfilled, (state, action) => {
             state.user = action.payload.user;
             state.loading = "idle";
+            localStorage.setItem("user", JSON.stringify(action.payload.user));
         });
 
         builder.addCase(signUp.pending, (state, action) => {

@@ -1,20 +1,9 @@
-"use client";
-import { use, useState, useEffect } from "react";
-import Header from "@/components/Header/page";
-import Banner from "@/components/Banner/page";
-import Row from "@/components/Row/page";
+import { use } from "react";
 import requests from "@/utils/requests";
-import Footer from "@/components/Footer/page";
-import Modal from "@/components/Modal/page";
-import Plans from "@/components/Plans/page";
-import { useAppSelector } from "@/redux/hooks";
 import payments from "@/lib/stripe";
-import useSubscription from "@/hook/useSubscription";
-import {
-    getProducts,
-    onCurrentUserSubscriptionUpdate,
-    Subscription,
-} from "@stripe/firestore-stripe-payments";
+import { getProducts } from "@stripe/firestore-stripe-payments";
+import Main from "@/components/Main/page";
+import RequireAuth from "@/components/RequireAuth/page";
 
 async function getData() {
     const products = await getProducts(payments, {
@@ -67,57 +56,27 @@ function Home() {
         documentaries,
         products,
     } = use(getData());
-    const { user } = useAppSelector((state) => state.auth);
-    const [subscription, setSubscription] = useState<Subscription | null>(null);
-    console.log("subscription", subscription);
-    console.log("user", user);
-
-    useEffect(() => {
-        // if (!user) return;
-        // console.log("run effect app");
-        // onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
-        //     console.log("snapshot", snapshot);
-        //     setSubscription(
-        //         snapshot.subscriptions.filter(
-        //             (subscription) =>
-        //                 subscription.status === "active" ||
-        //                 subscription.status === "trialing"
-        //         )[0]
-        //     );
-        // });
-        // setTest("123");
-
-        console.log("done effect");
-    }, []);
-
-    // if (subscription === null) return null;
-
-    // Protect application when user not subscribe
-    // if (!subscription) return <Plans products={products} />;
 
     return (
-        <div className="relative h-[50vh] bg-gradient-to-b md:h-[70vh] lg:h-[140vh]">
-            <Header />
-            <main className="relative pb-12 pl-5 md:pb-16 md:pl-8 lg:pb-[80px] lg:pl-16">
-                <Banner netflixOriginals={netflixOriginals} />
-                <section className="md:space-y-10 lg:space-y-28">
-                    <Row title="Trending Now" movies={trendingNow} />
-                    <Row title="Top Rated" movies={topRated} />
-                    <Row title="Action Thrillers" movies={actionMovies} />
-                    <Row title="Comedies" movies={comedyMovies} />
-                    <Row title="Scary Movies" movies={horrorMovies} />
-                    <Row title="Romance Movies" movies={romanceMovies} />
-                    <Row title="Documentaries" movies={documentaries} />
-                </section>
-            </main>
-            <Footer />
-            <Modal />
-        </div>
+        <RequireAuth>
+            <Main
+                netflixOriginals={netflixOriginals}
+                trendingNow={trendingNow}
+                topRated={topRated}
+                actionMovies={actionMovies}
+                comedyMovies={comedyMovies}
+                horrorMovies={horrorMovies}
+                romanceMovies={romanceMovies}
+                documentaries={documentaries}
+                products={products}
+            />
+        </RequireAuth>
     );
 }
-// export const metadata = {
-//     title: "Home - Netflix",
-//     icons: "/netflix-icon.png",
-// };
+
+export const metadata = {
+    title: "Home - Netflix",
+    icons: "/netflix-icon.png",
+};
 
 export default Home;
