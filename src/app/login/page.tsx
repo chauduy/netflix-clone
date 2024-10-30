@@ -138,7 +138,7 @@ function Login() {
                 </div>
 
                 <div className="text-[13px] text-[#8c8c8c]">
-                    This page is protected by Google reCAPTCHA to ensure you're
+                    This page is protected by Google reCAPTCHA to ensure you&apos;re
                     not a bot.{" "}
                     {!showPolicy && (
                         <button
