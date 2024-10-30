@@ -1,3 +1,4 @@
+"use client";
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
 import { signIn, signUp, logOut } from "./authThunk";
@@ -9,7 +10,9 @@ interface AuthState {
 
 const initialState: AuthState = {
     loading: "idle",
-    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) as User : null,
+    user: localStorage.getItem("user")
+        ? (JSON.parse(localStorage.getItem("user") as string) as User)
+        : null,
 };
 
 const authSlice = createSlice({
