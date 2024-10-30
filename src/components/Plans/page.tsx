@@ -55,7 +55,7 @@ function Plans({ products }: Props) {
 
             <main className="z-40 mx-auto max-w-5xl px-5 pb-12 pt-28 transition-all md:px-10">
                 <h1 className="mb-3 text-2xl font-medium md:text-3xl">
-                    Choose the plan that's right for you
+                    {`Choose the plan that's right for you`}
                 </h1>
                 <ul>
                     <li className="flex items-center gap-x-2 text-lg">
