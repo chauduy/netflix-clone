@@ -3,10 +3,11 @@ import { useRef, useState } from "react";
 import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
 import { Movie } from "@/type";
 import Thumbnail from "@/components/Thumbnail/page";
+import { DocumentData } from "firebase/firestore";
 
 interface Props {
     title: string;
-    movies: Movie[];
+    movies: Movie[] | DocumentData[] | null;
 }
 
 function Row({ title, movies }: Props) {
@@ -45,7 +46,7 @@ function Row({ title, movies }: Props) {
                     className="flex items-center space-x-0.5 overflow-y-hidden overflow-x-scroll p-2 scrollbar-hide md:space-x-2.5"
                     ref={rowRef}
                 >
-                    {movies.map((movie) => (
+                    {movies?.map((movie) => (
                         <Thumbnail key={movie.id} movie={movie} />
                     ))}
                 </div>

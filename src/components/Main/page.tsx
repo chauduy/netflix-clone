@@ -13,6 +13,7 @@ import Plans from "../Plans/page";
 import useSubscription from "@/hook/useSubscription";
 import AppLoading from "../AppLoading/page";
 import { setProduct } from "@/redux/features/product/productSlice";
+import useList from "@/hook/useList";
 
 interface MainCategory {
     netflixOriginals: Movie[];
@@ -37,20 +38,19 @@ function Main({
     documentaries,
     products,
 }: MainCategory) {
-    const { user } = useAppSelector(
-        (state: RootState) => state.auth
-    );
-    const dispatch = useAppDispatch()
-    const { subscription } = useSubscription(user)
+    const { user } = useAppSelector((state: RootState) => state.auth);
+    const dispatch = useAppDispatch();
+    const { subscription } = useSubscription();
+    const list = useList(user?.uid);
 
     useEffect(() => {
-        dispatch(setProduct(products))
-    }, [user])
+        dispatch(setProduct(products));
+    }, [user]);
 
-    if (subscription === null) return <AppLoading />
+    if (subscription === null) return <AppLoading />;
 
     // Protect application when user not subscribe
-    if (!subscription) return <Plans products={products} />;
+    if (subscription === undefined) return <Plans products={products} />;
 
     return (
         <div className="relative h-[50vh] bg-gradient-to-b md:h-[70vh] lg:h-[140vh]">
@@ -61,6 +61,8 @@ function Main({
                     <Row title="Trending Now" movies={trendingNow} />
                     <Row title="Top Rated" movies={topRated} />
                     <Row title="Action Thrillers" movies={actionMovies} />
+                    {/* My List Component */}
+                    {list?.length! > 0 && <Row title="My List" movies={list} />}
                     <Row title="Comedies" movies={comedyMovies} />
                     <Row title="Scary Movies" movies={horrorMovies} />
                     <Row title="Romance Movies" movies={romanceMovies} />

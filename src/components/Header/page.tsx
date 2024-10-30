@@ -2,22 +2,11 @@
 import { useState, useEffect } from "react";
 import { VscBell } from "react-icons/vsc";
 import { RxMagnifyingGlass } from "react-icons/rx";
-import { useRouter } from "next/navigation";
-import { logOut } from "@/redux/features/auth/authThunk";
-import { useAppDispatch } from "@/redux/hooks";
 import Link from "next/link";
+import MobileMenu from "../MobileMenu/page";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<Boolean>(false);
-    const dispatch = useAppDispatch();
-    const router = useRouter();
-
-    const handleLogout = async () => {
-        const result = await dispatch(logOut());
-        if (logOut.fulfilled.match(result)) {
-            router.push("/login");
-        }
-    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,6 +31,8 @@ function Header() {
                     src="https://rb.gy/ulxxee"
                     className="w-[40px] cursor-pointer object-contain md:w-[70px] lg:w-[90px]"
                 />
+
+                <MobileMenu />
 
                 <ul className="hidden items-center space-x-4 lg:flex">
                     <li className="navigationTab">Home</li>

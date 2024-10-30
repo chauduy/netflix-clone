@@ -2,9 +2,10 @@ import Image from "next/image";
 import { Movie } from "@/type";
 import { useAppDispatch } from "@/redux/hooks";
 import { openModal } from "@/redux/features/modal/modalSlice";
+import { DocumentData } from "firebase/firestore";
 
 interface Props {
-    movie: Movie;
+    movie: Movie | DocumentData | null;
 }
 
 function Thumbnail({ movie }: Props) {

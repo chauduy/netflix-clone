@@ -10,16 +10,41 @@ import {
     HiOutlineThumbUp,
     HiOutlineVolumeOff,
     HiOutlineVolumeUp,
+    HiCheck,
 } from "react-icons/hi";
-import { Genre, MovieType } from "@/type";
+import { Genre, Movie, MovieType } from "@/type";
 import { closeModal } from "@/redux/features/modal/modalSlice";
+import {
+    collection,
+    deleteDoc,
+    doc,
+    DocumentData,
+    onSnapshot,
+    setDoc,
+} from "firebase/firestore";
+import { RootState } from "@/redux/store";
+import { db } from "@/lib/firebase";
+import { toast, Toaster } from "react-hot-toast";
+
+const toastStyle = {
+    background: "white",
+    color: "black",
+    fontWeight: "bold",
+    fontSize: "16px",
+    padding: "15px",
+    borderRadius: "9999px",
+    maxWidth: "1000px",
+};
 
 function Modal() {
     const [trailer, setTrailer] = useState<string>("");
     const [genres, setGenres] = useState<Genre[]>([]);
+    const [movies, setMovies] = useState<DocumentData[] | Movie[]>([]);
+    const [addedToList, setAddedToList] = useState(false);
     const [muted, setMuted] = useState(false);
     const dispatch = useAppDispatch();
     const openModal = useAppSelector((state) => state.modal.open);
+    const { user } = useAppSelector((state: RootState) => state.auth);
     const movie = useAppSelector((state) => state.modal.movie);
 
     useEffect(() => {
@@ -43,8 +68,57 @@ function Modal() {
         fetchMovie();
     }, [movie]);
 
+    // Find all the movies in the user's list
+    useEffect(() => {
+        if (user) {
+            return onSnapshot(
+                collection(db, "customers", user.uid, "myList"),
+                (snapshot) => setMovies(snapshot.docs)
+            );
+        }
+    }, [db, movie?.id]);
+
+    // Check if the movie is already in the user's list
+    useEffect(
+        () =>
+            setAddedToList(
+                movies.findIndex((result) => result.data().id === movie?.id) !==
+                    -1
+            ),
+        [movies]
+    );
+
     const handleClose = () => {
         dispatch(closeModal());
+    };
+
+    const handleList = async () => {
+        if (addedToList) {
+            await deleteDoc(
+                doc(db, "customers", user!.uid, "myList", movie?.id.toString()!)
+            );
+
+            toast(`${movie?.title} has been removed from My List`, {
+                duration: 8000,
+                style: toastStyle,
+            });
+        } else {
+            await setDoc(
+                doc(
+                    db,
+                    "customers",
+                    user!.uid,
+                    "myList",
+                    movie?.id.toString()!
+                ),
+                { ...movie }
+            );
+
+            toast(`${movie?.title} has been added to My List`, {
+                duration: 8000,
+                style: toastStyle,
+            });
+        }
     };
 
     return (
@@ -57,6 +131,7 @@ function Modal() {
             }}
         >
             <>
+                <Toaster position="bottom-center" />
                 <button
                     className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818] md:right-12 md:top-7"
                     onClick={handleClose}
@@ -84,8 +159,15 @@ function Modal() {
                                 <FaPlay className="h-7 w-7 text-black" />
                                 Play
                             </button>
-                            <button className="modalButton">
-                                <AiOutlinePlus className="h-7 w-7" />
+                            <button
+                                className="modalButton"
+                                onClick={handleList}
+                            >
+                                {addedToList ? (
+                                    <HiCheck className="h-7 w-7" />
+                                ) : (
+                                    <AiOutlinePlus className="h-7 w-7" />
+                                )}
                             </button>
                             <button className="modalButton">
                                 <HiOutlineThumbUp className="h-7 w-7" />

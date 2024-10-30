@@ -96,13 +96,13 @@ function Plans({ products }: Props) {
 
                     <button
                         disabled={!selectedPlan || isBillingLoading}
-                        className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] ${
+                        className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] h-20 flex items-center justify-center ${
                             isBillingLoading && "opacity-60"
                         }`}
                         onClick={subscribeToPlan}
                     >
                         {isBillingLoading ? (
-                            <Loader color="dark:fill-gray-300" />
+                            <Loader color="#ffffff" />
                         ) : (
                             "Subscribe"
                         )}

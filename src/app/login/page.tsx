@@ -109,7 +109,7 @@ function Login() {
                         className="flex w-full items-center justify-center rounded bg-[#E50914] py-3 font-bold"
                         type="submit"
                     >
-                        {!loading ? "Sign In" : <Loader color="white" />}
+                        {!loading ? "Sign In" : <Loader color="#ffffff" />}
                     </button>
                     <div className="mt-3 flex items-center justify-between">
                         <div className="flex items-center">

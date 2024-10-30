@@ -50,7 +50,8 @@ export const logOut = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             const response = await signOut(auth);
-            localStorage.removeItem('user');
+            localStorage.removeItem("user");
+            localStorage.removeItem("products");
             return response;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);
