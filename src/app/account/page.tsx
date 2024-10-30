@@ -13,7 +13,7 @@ import { goToBillingPortal } from "@/lib/stripe";
 import { CircularProgress } from "@mui/material";
 import AppLoading from "@/components/AppLoading/page";
 
-function page() {
+function Account() {
     const { products } = useAppSelector((state: RootState) => state.product);
     const { user } = useAppSelector((state) => state.auth);
     const [loading, setLoading] = useState<Boolean>(false)
@@ -205,4 +205,4 @@ function page() {
     );
 }
 
-export default page;
+export default Account;
