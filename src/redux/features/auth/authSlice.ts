@@ -1,3 +1,4 @@
+"use client";
 import { lcStorage } from "@/utils/store";
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";

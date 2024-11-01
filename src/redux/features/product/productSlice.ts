@@ -1,3 +1,4 @@
+"use client";
 import { lcStorage } from "@/utils/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "@stripe/firestore-stripe-payments";

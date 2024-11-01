@@ -1,3 +1,4 @@
+"use client";
 import { lcStorage } from "@/utils/store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
