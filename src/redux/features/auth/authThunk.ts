@@ -1,5 +1,3 @@
-"use client";
-import { lcStorage } from "@/utils/store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
     createUserWithEmailAndPassword,
@@ -50,8 +48,10 @@ export const logOut = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             const response = await signOut(auth);
-            lcStorage!.removeItem("user");
-            lcStorage!.removeItem("products");
+            if (typeof window !== "undefined") {
+                localStorage.removeItem("user");
+                localStorage.removeItem("products");
+            }
             return response;
         } catch (e) {
             return thunkAPI.rejectWithValue(e);

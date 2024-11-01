@@ -1,5 +1,3 @@
-"use client";
-import { lcStorage } from "@/utils/store";
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
 import { signIn, signUp, logOut } from "./authThunk";
@@ -11,9 +9,12 @@ interface AuthState {
 
 const initialState: AuthState = {
     loading: "idle",
-    user: lcStorage!.getItem("user")
-        ? (JSON.parse(lcStorage!.getItem("user") as string) as User)
-        : null,
+    user:
+        typeof window !== "undefined"
+            ? localStorage.getItem("user")
+                ? (JSON.parse(localStorage.getItem("user") as string) as User)
+                : null
+            : null,
 };
 
 const authSlice = createSlice({
@@ -22,6 +23,7 @@ const authSlice = createSlice({
     reducers: {
         clearAuthData: (state) => {
             state.user = null;
+            if (typeof window !== "undefined") localStorage.removeItem("user");
         },
     },
     extraReducers: (builder) => {
@@ -34,7 +36,12 @@ const authSlice = createSlice({
         builder.addCase(signIn.fulfilled, (state, action) => {
             state.user = action.payload.user;
             state.loading = "idle";
-            lcStorage!.setItem("user", JSON.stringify(action.payload.user));
+            if (typeof window !== "undefined") {
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(action.payload.user)
+                );
+            }
         });
 
         builder.addCase(signUp.pending, (state, action) => {
@@ -57,6 +64,7 @@ const authSlice = createSlice({
         builder.addCase(logOut.fulfilled, (state, action) => {
             state.user = null;
             state.loading = "idle";
+            if (typeof window !== "undefined") localStorage.removeItem("user");
         });
     },
 });
