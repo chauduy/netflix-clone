@@ -1,4 +1,4 @@
-"use client";
+import { lcStorage } from "@/utils/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "@stripe/firestore-stripe-payments";
 
@@ -7,8 +7,8 @@ interface ProductState {
 }
 
 const initialState: ProductState = {
-    products: localStorage.getItem("products")
-        ? (JSON.parse(localStorage.getItem("products") as string)
+    products: lcStorage!.getItem("products")
+        ? (JSON.parse(lcStorage!.getItem("products") as string)
               .products as Product[])
         : [],
 };
@@ -18,7 +18,7 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         setProduct: (state, action: PayloadAction<Product[]>) => {
-            localStorage.setItem(
+            lcStorage!.setItem(
                 "products",
                 JSON.stringify({ products: action.payload })
             );
