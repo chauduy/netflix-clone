@@ -11,10 +11,9 @@ interface AuthState {
 
 const initialState: AuthState = {
     loading: "idle",
-    user:
-        typeof window !== "undefined" && lcStorage!.getItem("user")
-            ? (JSON.parse(lcStorage!.getItem("user") as string) as User)
-            : null,
+    user: lcStorage!.getItem("user")
+        ? (JSON.parse(lcStorage!.getItem("user") as string) as User)
+        : null,
 };
 
 const authSlice = createSlice({
