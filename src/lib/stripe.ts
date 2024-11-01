@@ -15,10 +15,10 @@ const payments = getStripePayments(app, {
 const loadCheckout = async (priceId: string) => {
     await createCheckoutSession(payments, {
         price: priceId,
-        success_url: `${window.location.origin}/login`,
-        cancel_url: window.location.origin,
+        success_url: `${window?.location.origin}/login`,
+        cancel_url: window?.location.origin,
     })
-        .then((snapshot) => window.location.assign(snapshot.url))
+        .then((snapshot) => window?.location.assign(snapshot.url))
         .catch((error) => console.log(error.message));
 };
 
@@ -30,9 +30,9 @@ const goToBillingPortal = async () => {
     );
 
     await functionRef({
-        returnUrl: `${window.location.origin}/account`,
+        returnUrl: `${window?.location.origin}/account`,
     })
-        .then(({ data }: any) => window.location.assign(data.url))
+        .then(({ data }: any) => window?.location.assign(data.url))
         .catch((error) => console.log(error.message));
 };
 
