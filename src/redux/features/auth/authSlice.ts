@@ -1,3 +1,4 @@
+import { storage } from "@/utils/store";
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
 import { signIn, signUp, logOut } from "./authThunk";
@@ -9,12 +10,9 @@ interface AuthState {
 
 const initialState: AuthState = {
     loading: "idle",
-    user:
-        typeof window !== "undefined"
-            ? localStorage.getItem("user")
-                ? (JSON.parse(localStorage.getItem("user") as string) as User)
-                : null
-            : null,
+    user: storage.getItem("user")
+        ? (JSON.parse(localStorage.getItem("user") as string) as User)
+        : null,
 };
 
 const authSlice = createSlice({
@@ -36,12 +34,7 @@ const authSlice = createSlice({
         builder.addCase(signIn.fulfilled, (state, action) => {
             state.user = action.payload.user;
             state.loading = "idle";
-            if (typeof window !== "undefined") {
-                localStorage.setItem(
-                    "user",
-                    JSON.stringify(action.payload.user)
-                );
-            }
+            storage.setItem("user", JSON.stringify(action.payload.user));
         });
 
         builder.addCase(signUp.pending, (state, action) => {
@@ -64,7 +57,7 @@ const authSlice = createSlice({
         builder.addCase(logOut.fulfilled, (state, action) => {
             state.user = null;
             state.loading = "idle";
-            if (typeof window !== "undefined") localStorage.removeItem("user");
+            storage.removeItem("user");
         });
     },
 });

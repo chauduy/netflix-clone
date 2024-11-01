@@ -1,3 +1,4 @@
+import { storage } from "@/utils/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "@stripe/firestore-stripe-payments";
 
@@ -6,13 +7,10 @@ interface ProductState {
 }
 
 const initialState: ProductState = {
-    products:
-        typeof window !== "undefined"
-            ? localStorage.getItem("products")
-                ? (JSON.parse(localStorage!.getItem("products") as string)
-                      .products as Product[])
-                : []
-            : [],
+    products: storage.getItem("products")
+        ? (JSON.parse(localStorage!.getItem("products") as string)
+              .products as Product[])
+        : [],
 };
 
 const productSlice = createSlice({
@@ -20,12 +18,10 @@ const productSlice = createSlice({
     initialState,
     reducers: {
         setProduct: (state, action: PayloadAction<Product[]>) => {
-            if (typeof window !== "undefined") {
-                localStorage.setItem(
-                    "products",
-                    JSON.stringify({ products: action.payload })
-                );
-            }
+            storage.setItem(
+                "products",
+                JSON.stringify({ products: action.payload })
+            );
             state.products = action.payload;
         },
     },
