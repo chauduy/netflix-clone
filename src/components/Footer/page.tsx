@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 function Footer() {
@@ -10,42 +11,90 @@ function Footer() {
                 <FaYoutube className="h-5 w-5" />
             </div>
             <div className="mt-2 grid grid-cols-2 md:grid-cols-4 lg:max-w-[70vw]">
-                <a href="" className="footerLinkApp">
+                <Link
+                    target={"_blank"}
+                    href="https://ir.netflix.net/ir-overview/profile/default.aspx"
+                    className="footerLinkApp"
+                >
                     Audio Description
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://ir.netflix.net/ir-overview/profile/default.aspx"
+                    className="footerLinkApp"
+                >
                     Gift Cards
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://ir.netflix.net/ir-overview/profile/default.aspx"
+                    className="footerLinkApp"
+                >
                     Investor Relations
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/legal/termsofuse"
+                    className="footerLinkApp"
+                >
                     Term of Use
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/legal/notices"
+                    className="footerLinkApp"
+                >
                     Legal Notices
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/en/node/134094"
+                    className="footerLinkApp"
+                >
                     Corporate Information
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/en"
+                    className="footerLinkApp"
+                >
                     Help Center
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://media.netflix.com/en/"
+                    className="footerLinkApp"
+                >
                     Media Center
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://jobs.netflix.com/"
+                    className="footerLinkApp"
+                >
                     Jobs
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/legal/privacy"
+                    className="footerLinkApp"
+                >
                     Privacy
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/legal/privacy#cookies"
+                    className="footerLinkApp"
+                >
                     Cookie Preferences
-                </a>
-                <a href="" className="footerLinkApp">
+                </Link>
+                <Link
+                    target={"_blank"}
+                    href="https://help.netflix.com/en/contactus"
+                    className="footerLinkApp"
+                >
                     Contact Us
-                </a>
+                </Link>
             </div>
             <div className="mt-5 text-sm text-gray-500">
                 © 1997-2023 Netflix, Inc.

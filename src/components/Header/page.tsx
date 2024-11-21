@@ -25,7 +25,7 @@ function Header() {
     }, []);
 
     return (
-        <header className={`${isScrolled && "bg-[#141414]"}`}>
+        <header className={`${isScrolled ? "bg-[#141414]" : ""}`}>
             <div className="relative flex items-center space-x-4 lg:space-x-8">
                 <img
                     src="https://rb.gy/ulxxee"
@@ -34,12 +34,14 @@ function Header() {
 
                 <MobileMenu />
 
-                <ul className="hidden items-center space-x-4 lg:flex">
+                <ul className="hidden items-center space-x-4 md:flex">
                     <li className="navigationTab">Home</li>
                     <li className="navigationTab">TV Shows</li>
                     <li className="navigationTab">Movies</li>
                     <li className="navigationTab">New & Popular</li>
-                    <li className="navigationTab">My List</li>
+                    <Link href={"/my-list"} className="navigationTab">
+                        My List
+                    </Link>
                     <li className="navigationTab">Browse by Languages</li>
                 </ul>
             </div>

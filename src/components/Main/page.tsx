@@ -57,7 +57,7 @@ function Main({
             <Header />
             <main className="relative pb-12 pl-5 md:pb-16 md:pl-8 lg:pb-[80px] lg:pl-16">
                 <Banner netflixOriginals={netflixOriginals} />
-                <section className="md:space-y-10 lg:space-y-28">
+                <section className="md:space-y-10 lg:space-y-16">
                     <Row title="Trending Now" movies={trendingNow} />
                     <Row title="Top Rated" movies={topRated} />
                     <Row title="Action Thrillers" movies={actionMovies} />

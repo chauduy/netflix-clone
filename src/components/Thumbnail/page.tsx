@@ -13,7 +13,7 @@ function Thumbnail({ movie }: Props) {
 
     return (
         <div
-            className="relative h-[82px] min-w-[150px] cursor-pointer transition duration-200 ease-out hover:z-30 hover:scale-125 md:h-[130px] md:min-w-[230px] lg:h-[165px] lg:min-w-[290px]"
+            className="relative cursor-pointer transition duration-200 ease-out hover:z-30 hover:scale-125 min-w-[48%] md:min-w-[24%] lg:min-w-[calc(100%/6)] min-h-[10vh]  lg:min-h-[20vh]"
             onClick={() => {
                 dispatch(openModal(movie));
             }}
@@ -24,7 +24,7 @@ function Thumbnail({ movie }: Props) {
                 }`}
                 alt="Thumbnail Image"
                 fill
-                className="rounded-sm object-cover md:rounded"
+                className="rounded-[0.2vw] object-cover"
             />
         </div>
     );
