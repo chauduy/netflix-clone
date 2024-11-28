@@ -1,15 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoginFooter from "@/components/LoginFooter/page";
 import Loader from "@/components/Loader/page";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { signIn } from "@/redux/features/auth/authThunk";
 import { useRouter } from "next/navigation";
 import { customErrorMessage } from "@/helper";
+import AppLoading from "@/components/AppLoading/page";
 
 interface Inputs {
     email: string;
@@ -18,9 +19,20 @@ interface Inputs {
 
 function Login() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.auth);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        if (user) {
+            router.push("/");
+        } else {
+            setIsCheckingAuth(false);
+        }
+    }, [user, router]);
+
     const formSchema = Yup.object().shape({
         email: Yup.string()
             .email("Wrong email format")
@@ -32,10 +44,10 @@ function Login() {
             .max(60, "Your password must contain between 4 to 60 characters")
             .required("Password is required"),
     });
+
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<Inputs>({ resolver: yupResolver(formSchema) });
 
@@ -52,10 +64,14 @@ function Login() {
                 customErrorMessage(result);
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
         setLoading(false);
     };
+
+    if (isCheckingAuth) {
+        return <AppLoading />;
+    }
 
     return (
         <div className="relative flex h-[950px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
@@ -86,7 +102,7 @@ function Login() {
                         {...register("email", { required: true })}
                     />
                     {errors.email && (
-                        <p className="text-sm  text-[#e87c03]">
+                        <p className="text-sm text-[#e87c03]">
                             {errors.email.message}
                         </p>
                     )}
@@ -99,7 +115,7 @@ function Login() {
                         {...register("password")}
                     />
                     {errors.password && (
-                        <p className="text-sm  text-[#e87c03]">
+                        <p className="text-sm text-[#e87c03]">
                             {errors.password.message}
                         </p>
                     )}
@@ -138,8 +154,8 @@ function Login() {
                 </div>
 
                 <div className="text-[13px] text-[#8c8c8c]">
-                    This page is protected by Google reCAPTCHA to ensure you&apos;re
-                    not a bot.{" "}
+                    This page is protected by Google reCAPTCHA to ensure
+                    you&apos;re not a bot.{" "}
                     {!showPolicy && (
                         <button
                             className="inline cursor-pointer text-[#0071eb] hover:underline"

@@ -1,21 +1,22 @@
 "use client";
 import React, { useEffect } from "react";
 import { useAppSelector } from "@/redux/hooks";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
     const { user } = useAppSelector((state) => state.auth);
+    const pathname = usePathname();
     const router = useRouter();
 
     useEffect(() => {
-        if (!user) {
+        if (
+            !user &&
+            !pathname.startsWith("/login") &&
+            !pathname.startsWith("/registration")
+        ) {
             router.push("/login");
         }
     }, [user, router]);
-
-    if (!user) {
-        return null;
-    }
 
     return <>{children}</>;
 }

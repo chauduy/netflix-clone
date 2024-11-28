@@ -1,9 +1,8 @@
 import { use } from "react";
-import requests from "@/utils/requests";
+import requests from "@/api/requests";
 import payments from "@/lib/stripe";
 import { getProducts } from "@stripe/firestore-stripe-payments";
 import Main from "@/components/Main/page";
-import RequireAuth from "@/components/RequireAuth/page";
 
 async function getData() {
     const products = await getProducts(payments, {
@@ -58,25 +57,18 @@ function Home() {
     } = use(getData());
 
     return (
-        <RequireAuth>
-            <Main
-                netflixOriginals={netflixOriginals}
-                trendingNow={trendingNow}
-                topRated={topRated}
-                actionMovies={actionMovies}
-                comedyMovies={comedyMovies}
-                horrorMovies={horrorMovies}
-                romanceMovies={romanceMovies}
-                documentaries={documentaries}
-                products={products}
-            />
-        </RequireAuth>
+        <Main
+            netflixOriginals={netflixOriginals}
+            trendingNow={trendingNow}
+            topRated={topRated}
+            actionMovies={actionMovies}
+            comedyMovies={comedyMovies}
+            horrorMovies={horrorMovies}
+            romanceMovies={romanceMovies}
+            documentaries={documentaries}
+            products={products}
+        />
     );
 }
-
-export const metadata = {
-    title: "Home - Netflix",
-    icons: "/netflix-icon.png",
-};
 
 export default Home;

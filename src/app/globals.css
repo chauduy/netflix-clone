@@ -9,7 +9,22 @@
 
 @layer base {
     body {
-        @apply w-full bg-[#141414] font-netflix text-[#fff] scrollbar-thin scrollbar-track-black scrollbar-thumb-red-600;
+        @apply w-full bg-[#141414] font-netflix text-[#fff];
+    }
+
+    *::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #141414;
+        border-radius: 5px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: #e50914;
+        border-radius: 14px;
+        border: 3px solid #e50914;
     }
 
     header {

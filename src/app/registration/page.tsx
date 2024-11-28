@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { customErrorMessage } from "@/helper";
 import { FirebaseError } from "firebase/app";
 import { toast } from "react-hot-toast";
+import AppLoading from "@/components/AppLoading/page";
 
 interface Inputs {
     email: string;
@@ -23,6 +24,7 @@ function Registration() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const { loading, user } = useAppSelector((state) => state.auth);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const router = useRouter();
     const formSchema = Yup.object().shape({
         email: Yup.string()
@@ -44,9 +46,16 @@ function Registration() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<Inputs>({ resolver: yupResolver(formSchema) });
+
+    useEffect(() => {
+        if (user) {
+            router.push("/");
+        } else {
+            setIsCheckingAuth(false);
+        }
+    }, [user, router]);
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
@@ -64,6 +73,10 @@ function Registration() {
             console.log(error);
         }
     };
+
+    if (isCheckingAuth) {
+        return <AppLoading />;
+    }
 
     return (
         <div className="relative flex h-[1050px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
@@ -147,8 +160,8 @@ function Registration() {
                 </div>
 
                 <div className="text-[13px] text-[#8c8c8c]">
-                    This page is protected by Google reCAPTCHA to ensure you&apos;re
-                    not a bot.{" "}
+                    This page is protected by Google reCAPTCHA to ensure
+                    you&apos;re not a bot.{" "}
                     {!showPolicy && (
                         <button
                             className="inline cursor-pointer text-[#0071eb] hover:underline"
