@@ -4,7 +4,7 @@ module.exports = {
     theme: {
         extend: {
             screens: {
-                lg: '1025px',
+                lg: "1025px",
             },
             backgroundImage: {
                 "gradient-to-b":
@@ -15,9 +15,5 @@ module.exports = {
             netflix: ["NetflixSans"],
         },
     },
-    plugins: [
-        require("tailwindcss-textshadow"),
-        require("tailwind-scrollbar-hide"),
-        require("tailwind-scrollbar")({ nocompatible: true }),
-    ],
+    plugins: [require("tailwindcss-textshadow")],
 };
