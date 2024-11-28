@@ -23,6 +23,6 @@ export default function RootLayout({
 }
 
 export const metadata = {
-    title: "Home - Netflix",
+    title: "Home - Watch movie",
     icons: "/netflix-icon.png",
 };
