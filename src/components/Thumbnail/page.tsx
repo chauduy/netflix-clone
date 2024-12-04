@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Movie } from "@/type";
 import { useAppDispatch } from "@/redux/hooks";
-import { openModal } from "@/redux/features/modal/modalSlice";
 import { DocumentData } from "firebase/firestore";
+import { fetchTrailer } from "@/redux/features/modal/modalThunk";
+import { setModalMovie } from "@/redux/features/modal/modalSlice";
 
 interface Props {
     movie: Movie | DocumentData | null;
@@ -15,7 +16,8 @@ function Thumbnail({ movie }: Props) {
         <div
             className="relative cursor-pointer transition duration-200 ease-out hover:z-30 hover:scale-125 min-w-[48%] md:min-w-[24%] lg:min-w-[calc(100%/6)] min-h-[10vh]  lg:min-h-[20vh]"
             onClick={() => {
-                dispatch(openModal(movie));
+                dispatch(setModalMovie(movie));
+                dispatch(fetchTrailer({ movie: movie }));
             }}
         >
             <Image

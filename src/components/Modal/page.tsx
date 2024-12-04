@@ -12,7 +12,7 @@ import {
     HiOutlineVolumeUp,
     HiCheck,
 } from "react-icons/hi";
-import { Genre, Movie, MovieType } from "@/type";
+import { Movie } from "@/type";
 import { closeModal } from "@/redux/features/modal/modalSlice";
 import {
     collection,
@@ -25,48 +25,17 @@ import {
 import { RootState } from "@/redux/store";
 import { db } from "@/lib/firebase";
 import { toast, Toaster } from "react-hot-toast";
-
-const toastStyle = {
-    background: "white",
-    color: "black",
-    fontWeight: "bold",
-    fontSize: "16px",
-    padding: "15px",
-    borderRadius: "9999px",
-    maxWidth: "1000px",
-};
+import { toastStyle } from "@/utils/toast";
 
 function Modal() {
-    const [trailer, setTrailer] = useState<string>("");
-    const [genres, setGenres] = useState<Genre[]>([]);
     const [movies, setMovies] = useState<DocumentData[] | Movie[]>([]);
     const [addedToList, setAddedToList] = useState(false);
     const [muted, setMuted] = useState(false);
     const dispatch = useAppDispatch();
-    const openModal = useAppSelector((state) => state.modal.open);
+    const { open, movie, trailer, genres } = useAppSelector(
+        (state) => state.modal
+    );
     const { user } = useAppSelector((state: RootState) => state.auth);
-    const movie = useAppSelector((state) => state.modal.movie);
-
-    useEffect(() => {
-        if (!movie) return;
-
-        async function fetchMovie() {
-            const data = await fetch(
-                `https://api.themoviedb.org/3/movie/${movie?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`
-            ).then((response) => response.json());
-            if (data?.videos) {
-                const index = data?.videos?.results?.findIndex(
-                    (element: MovieType) => element.type === "Trailer"
-                );
-                setTrailer(data?.videos?.results[index]?.key);
-            }
-            if (data?.genres) {
-                setGenres(data.genres);
-            }
-        }
-
-        fetchMovie();
-    }, [movie]);
 
     // Find all the movies in the user's list
     useEffect(() => {
@@ -99,8 +68,8 @@ function Modal() {
             );
 
             toast(`${movie?.title} has been removed from My List`, {
-                duration: 8000,
-                style: toastStyle,
+                duration: 5000,
+                style: toastStyle.default,
             });
         } else {
             await setDoc(
@@ -115,16 +84,20 @@ function Modal() {
             );
 
             toast(`${movie?.title} has been added to My List`, {
-                duration: 8000,
-                style: toastStyle,
+                duration: 5000,
+                style: toastStyle.default,
             });
         }
     };
 
     return (
         <MuiModal
-            open={openModal}
-            onClose={handleClose}
+            open={open}
+            onClose={(event, reason) => {
+                if (reason === "backdropClick" || reason === "escapeKeyDown") {
+                    handleClose();
+                }
+            }}
             className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md px-3 scrollbar-hide md:px-8"
             slotProps={{
                 backdrop: { sx: { opacity: "0.7 !important" } },
@@ -205,7 +178,7 @@ function Modal() {
                                 <div>
                                     <span className="text-[gray]">Genres:</span>{" "}
                                     {genres
-                                        .map((genre) => genre.name)
+                                        .map((genre) => genre?.name)
                                         .join(", ")}
                                 </div>
 

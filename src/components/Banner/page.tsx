@@ -5,8 +5,9 @@ import { CgInfo } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import { Movie } from "@/type";
 import { baseUrl } from "@/constants";
-import { openModal } from "@/redux/features/modal/modalSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { fetchTrailer } from "@/redux/features/modal/modalThunk";
+import { setModalMovie } from "@/redux/features/modal/modalSlice";
 
 interface Props {
     netflixOriginals: Movie[];
@@ -51,7 +52,8 @@ function Banner({ netflixOriginals }: Props) {
                 <button
                     className="bannerButton bg-[gray]/70"
                     onClick={() => {
-                        dispatch(openModal(movie));
+                        dispatch(setModalMovie(movie));
+                        dispatch(fetchTrailer({ movie: movie }));
                     }}
                 >
                     <CgInfo className="h-5 w-5 md:h-8 md:w-8" />
