@@ -47,7 +47,7 @@ function Row({ title, movies }: Props) {
     };
 
     return (
-        <div className="h-32 space-y-0.5 md:h-36 md:space-y-2 lg:h-40">
+        <div className="h-32 space-y-0.5 md:h-36 md:space-y-2 lg:h-full">
             <h2 className="w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-[1.4vw]">
                 {title}
             </h2>
