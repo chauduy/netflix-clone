@@ -19,7 +19,7 @@ interface Props {
 function Banner({ netflixOriginals }: Props) {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [trailer, setTrailer] = useState<string>("");
-    const [muted, setMuted] = useState(false);
+    const [muted, setMuted] = useState(true);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -41,6 +41,7 @@ function Banner({ netflixOriginals }: Props) {
                     (item: MovieType) => item.type === "Trailer"
                 );
                 setTrailer(result?.videos?.results?.[index]?.key);
+                setMuted(false);
             }
         }
 
