@@ -41,7 +41,6 @@ function Banner({ netflixOriginals }: Props) {
                     (item: MovieType) => item.type === "Trailer"
                 );
                 setTrailer(result?.videos?.results?.[index]?.key);
-                setMuted(false);
             }
         }
 
