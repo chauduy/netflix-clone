@@ -189,22 +189,6 @@ function Account() {
                         </button>
                     </div>
                 </div>
-
-                <div className="relative mt-4 w-full h-[1000px] pt-[56.25%]">
-                    <iframe
-                        src={`https://www.youtube.com/embed/rS0gyZ7rbmw?modestbranding=1&controls=0&rel=0&iv_load_policy=3&fs=0&disablekb=1`}
-                        style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            height: "100%",
-                            border: "none",
-                        }}
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen={false}
-                    ></iframe>
-                </div>
             </div>
         </div>
     );

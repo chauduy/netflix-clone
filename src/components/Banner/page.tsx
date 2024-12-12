@@ -49,7 +49,9 @@ function Banner({ netflixOriginals }: Props) {
 
     return (
         <div className="banner flex flex-col py-16 md:h-[55vh] md:justify-center lg:h-[95vh] lg:pb-12">
-            <div className="absolute left-0 top-0 h-[50vh] w-full md:h-[70vh] lg:h-[140vh]">
+            <div
+                className={`absolute left-0 top-0 h-[50vh] w-full md:h-[70vh] ${trailer ? "lg:h-[140vh]" : "lg:h-[85vh]"}`}
+            >
                 {trailer ? (
                     <div className="absolute top-[-28vh] left-0 w-full h-full z-0">
                         <ReactPlayer
@@ -63,6 +65,18 @@ function Banner({ netflixOriginals }: Props) {
                             }}
                             playing
                             muted={muted}
+                            config={{
+                                youtube: {
+                                    playerVars: {
+                                        cc_lang_pref: 0,
+                                        cc_load_policy: 0,
+                                        disablekb: 0,
+                                        fs: 0,
+                                        iv_load_policy: 3,
+                                        ref: 0,
+                                    },
+                                },
+                            }}
                             onEnded={() => setTrailer("")}
                         />
                         <div className="bg-transparent w-full h-full z-10 absolute"></div>
