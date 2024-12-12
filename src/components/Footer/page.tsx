@@ -3,7 +3,7 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 function Footer() {
     return (
-        <div className="h-fit py-5 pl-5 md:py-8 md:pl-8 lg:py-10 lg:pl-60">
+        <div className="h-fit py-5 pl-5 md:py-8 md:pl-8 lg:py-10 lg:pl-60 bg-black">
             <div className="flex items-center space-x-7 pl-2">
                 <FaFacebookF className="h-5 w-5" />
                 <FaInstagram className="h-5 w-5" />
