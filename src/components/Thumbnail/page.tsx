@@ -14,7 +14,7 @@ function Thumbnail({ movie }: Props) {
 
     return (
         <div
-            className="relative cursor-pointer transition duration-200 ease-out hover:z-30 hover:scale-125 min-w-[48%] md:min-w-[24%] lg:min-w-[calc(100%/6.5)] min-h-[10vh] lg:min-h-[18vh]"
+            className="relative cursor-pointer transition duration-200 ease-out hover:z-30 hover:scale-125 min-w-[178px] min-h-[100px] md:min-w-[100%/4.5] lg:min-w-[calc(100%/6.5)] lg:min-h-[18vh]"
             onClick={() => {
                 dispatch(setModalMovie(movie));
                 dispatch(fetchTrailer({ movie: movie }));

@@ -50,10 +50,10 @@ function Banner({ netflixOriginals }: Props) {
     return (
         <div className="banner flex flex-col py-16 md:h-[55vh] md:justify-center lg:h-[95vh] lg:pb-12">
             <div
-                className={`absolute left-0 top-0 h-[50vh] w-full md:h-[70vh] ${trailer ? "lg:h-[140vh]" : "lg:h-[85vh]"}`}
+                className={`absolute left-0 top-0 w-full ${trailer ? "h-full md:h-[175vh] lg:h-[140vh]" : "h-[20vh] md:h-[40vh] lg:h-[85vh]"}`}
             >
                 {trailer ? (
-                    <div className="absolute top-[-28vh] left-0 w-full h-full z-0">
+                    <div className="absolute top-[-68vh] md:top-[-73vh] lg:top-[-28vh] left-0 w-full h-full z-0 pt-[56.25%]">
                         <ReactPlayer
                             url={`https://www.youtube.com/embed/${trailer}`}
                             width="100%"
@@ -93,12 +93,12 @@ function Banner({ netflixOriginals }: Props) {
                     />
                 )}
             </div>
-            <div className="z-20 space-y-2 md:space-y-4">
+            <div className="z-20 space-y-1 md:space-y-4 md:mb-[15vh] lg:mb-0">
                 <h1 className="max-w-md text-sm font-bold md:text-xl lg:text-7xl">
                     {movie?.original_title}
                 </h1>
-                <p className="max-w-xs text-[10px] text-shadow-lg md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl">
-                    {`${movie?.overview?.substring(0, 150)}...`}
+                <p className="max-w-xs text-[10px] text-shadow-lg md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl line-clamp-1 md:line-clamp-2 lg:line-clamp-3">
+                    {movie?.overview}
                 </p>
                 <div className="flex items-center justify-between pr-5 md:pr-8 lg:pr-16">
                     <div className="flex max-w-md space-x-2">
