@@ -68,7 +68,7 @@ function Modal() {
             );
 
             toast(`${movie?.title} has been removed from My List`, {
-                duration: 5000,
+                duration: 2000,
                 style: toastStyle.default,
             });
         } else {
@@ -84,7 +84,7 @@ function Modal() {
             );
 
             toast(`${movie?.title} has been added to My List`, {
-                duration: 5000,
+                duration: 2000,
                 style: toastStyle.default,
             });
         }
@@ -124,7 +124,6 @@ function Modal() {
                         }}
                         playing
                         muted={muted}
-                        className="test"
                     />
                     <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
                         <div className="flex space-x-2">
@@ -175,12 +174,16 @@ function Modal() {
                         <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
                             <p className="w-5/6">{movie?.overview}</p>
                             <div className="flex flex-col space-y-3 text-sm">
-                                <div>
-                                    <span className="text-[gray]">Genres:</span>{" "}
-                                    {genres
-                                        .map((genre) => genre?.name)
-                                        .join(", ")}
-                                </div>
+                                {genres && (
+                                    <div>
+                                        <span className="text-[gray]">
+                                            Genres:
+                                        </span>{" "}
+                                        {genres
+                                            .map((genre) => genre?.name)
+                                            .join(", ")}
+                                    </div>
+                                )}
 
                                 <div>
                                     <span className="text-[gray]">

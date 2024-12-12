@@ -44,20 +44,27 @@ const modalSlice = createSlice({
             state.loading = "idle";
         });
         builder.addCase(fetchTrailer.fulfilled, (state, action) => {
-            const trailerIndex = action.payload?.videos?.results?.findIndex(
-                (item: MovieType) => item?.type === "Trailer"
-            );
-            state.loading = "idle";
-            state.trailer =
-                action.payload?.videos?.results?.[trailerIndex]?.key || "";
-            state.genres = action.payload.genres;
-            if (trailerIndex === -1) {
+            if (!action.payload.videos) {
                 toast.error("The trailer could not be loaded", {
-                    duration: 5000,
+                    duration: 2000,
                     style: toastStyle.error,
                 });
             } else {
-                state.open = true;
+                const trailerIndex = action.payload?.videos?.results?.findIndex(
+                    (item: MovieType) => item?.type === "Trailer"
+                );
+                state.loading = "idle";
+                state.trailer =
+                    action.payload?.videos?.results?.[trailerIndex]?.key || "";
+                state.genres = action.payload.genres;
+                if (trailerIndex === -1) {
+                    toast.error("The trailer could not be loaded", {
+                        duration: 2000,
+                        style: toastStyle.error,
+                    });
+                } else {
+                    state.open = true;
+                }
             }
         });
     },
