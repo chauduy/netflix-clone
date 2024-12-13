@@ -79,7 +79,7 @@ function Banner({ netflixOriginals }: Props) {
                             }}
                             onEnded={() => setTrailer("")}
                         />
-                        <div className="bg-transparent w-full h-full z-10 absolute"></div>
+                        <div className="bg-transparent w-full h-full z-10 absolute top-0 left-0"></div>
                     </div>
                 ) : (
                     <Image

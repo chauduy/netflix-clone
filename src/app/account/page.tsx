@@ -46,24 +46,8 @@ function Account() {
     }
 
     return (
-        <div className="p-4 lg:p-6">
-            <div className="flex items-center justify-between">
-                <Link href={"/"}>
-                    <img
-                        src="https://rb.gy/ulxxee"
-                        className="w-[120px] cursor-pointer"
-                    />
-                </Link>
-                <Link href={"/account"}>
-                    <img
-                        src="https://rb.gy/g1pwyx"
-                        alt=""
-                        className="cursor-pointer rounded"
-                    />
-                </Link>
-            </div>
-
-            <div className="lg:mx-auto lg:max-w-6xl">
+        <div className="p-4 lg:p-6 md:h-[84vh] lg:h-[54vh]">
+            <div className="lg:mx-auto lg:max-w-6xl mt-4 md:mt-[10vh] lg:mt-[20vh]">
                 <div className="mb-4 mt-12 flex flex-col lg:flex-row lg:items-center">
                     <h1 className="mr-4 text-2xl text-white lg:text-3xl">
                         Account

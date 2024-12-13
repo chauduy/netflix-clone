@@ -53,25 +53,21 @@ function Main({
     if (subscription === undefined) return <Plans products={products} />;
 
     return (
-        <div className="relative h-[50vh] md:h-[70vh] lg:h-[140vh]">
-            <Header />
-            <main className="relative pb-12 pl-5 md:pb-16 md:pl-8 lg:pb-[80px] lg:pl-16 bg-black">
-                <Banner netflixOriginals={netflixOriginals} />
-                <section className="flex flex-col gap-y-2 md:gap-y-12 mt-[-5vh] md:-mt-[23vh]">
-                    <Row title="Trending Now" movies={trendingNow} />
-                    <Row title="Top Rated" movies={topRated} />
-                    <Row title="Action Thrillers" movies={actionMovies} />
-                    {/* My List Component */}
-                    {list?.length! > 0 && <Row title="My List" movies={list} />}
-                    <Row title="Comedies" movies={comedyMovies} />
-                    <Row title="Scary Movies" movies={horrorMovies} />
-                    <Row title="Romance Movies" movies={romanceMovies} />
-                    <Row title="Documentaries" movies={documentaries} />
-                </section>
-            </main>
-            <Footer />
+        <main className="relative pb-12 pl-5 md:pb-16 md:pl-8 lg:pb-[80px] lg:pl-16 bg-black">
+            <Banner netflixOriginals={netflixOriginals} />
+            <section className="flex flex-col gap-y-2 md:gap-y-12 mt-[-5vh] md:mt-[-23vh]">
+                <Row title="Trending Now" movies={trendingNow} />
+                <Row title="Top Rated" movies={topRated} />
+                <Row title="Action Thrillers" movies={actionMovies} />
+                {/* My List Component */}
+                {list?.length! > 0 && <Row title="My List" movies={list} />}
+                <Row title="Comedies" movies={comedyMovies} />
+                <Row title="Scary Movies" movies={horrorMovies} />
+                <Row title="Romance Movies" movies={romanceMovies} />
+                <Row title="Documentaries" movies={documentaries} />
+            </section>
             <Modal />
-        </div>
+        </main>
     );
 }
 
