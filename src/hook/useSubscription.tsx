@@ -5,22 +5,24 @@ import {
     Subscription,
 } from "@stripe/firestore-stripe-payments";
 import payments from "@/lib/stripe";
-import { User, onAuthStateChanged } from "firebase/auth"; // Import for auth state
-import { auth } from "@/lib/firebase"; // Your Firebase auth initialization
+import { User, onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 function useSubscription() {
-    const [subscription, setSubscription] = useState<Subscription | null| undefined>(null);
-    const [user, setUser] = useState<User | null>(null); // Track user state
-    const [loading, setLoading] = useState(true); // Loading state for auth
+    const [subscription, setSubscription] = useState<
+        Subscription | null | undefined
+    >(null);
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Listen for auth state changes
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
             setUser(firebaseUser);
-            setLoading(false); // Auth state is resolved
+            setLoading(false);
         });
 
-        return () => unsubscribe(); // Cleanup on component unmount
+        return () => unsubscribe();
     }, []);
 
     useEffect(() => {
@@ -37,11 +39,11 @@ function useSubscription() {
             }
         );
 
-        return () => unsubscribeSubscriptionUpdate(); // Cleanup on component unmount
+        return () => unsubscribeSubscriptionUpdate();
     }, [user]);
 
     if (loading) {
-        return { subscription: null, loading: true }; // Return loading state
+        return { subscription: null, loading: true };
     }
 
     return { subscription, loading: false };

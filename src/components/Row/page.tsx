@@ -25,7 +25,7 @@ function Row({ title, movies }: Props) {
         };
         checkOverflow();
 
-        // Optional: add a resize observer to handle window resizing
+        // Add a resize observer to handle window resizing
         window.addEventListener("resize", checkOverflow);
         return () => window.removeEventListener("resize", checkOverflow);
     }, [movies]);
