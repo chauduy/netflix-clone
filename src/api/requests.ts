@@ -16,8 +16,8 @@ const requests = {
     fetchTrailer: (movie: Movie | DocumentData | null) => {
         return `${BASE_URL}/movie/${movie?.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`;
     },
-    searchMovie: (query: string) => {
-        return `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&${query}`;
+    searchMovie: (query: string, page: number) => {
+        return `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`;
     },
 };
 

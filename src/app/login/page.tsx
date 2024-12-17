@@ -11,6 +11,7 @@ import { signIn } from "@/redux/features/auth/authThunk";
 import { useRouter } from "next/navigation";
 import { customErrorMessage } from "@/helper";
 import AppLoading from "@/components/AppLoading/page";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 
 interface Inputs {
     email: string;
@@ -20,9 +21,10 @@ interface Inputs {
 function Login() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [visibility, setVisibility] = useState(false);
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.auth);
-    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -106,19 +108,32 @@ function Login() {
                             {errors.email.message}
                         </p>
                     )}
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className={`input ${
-                            errors.password && "border-b-2 border-[#e87c03]"
-                        }`}
-                        {...register("password")}
-                    />
-                    {errors.password && (
-                        <p className="text-sm text-[#e87c03]">
-                            {errors.password.message}
-                        </p>
-                    )}
+                    <div className="relative">
+                        <input
+                            type={visibility ? "text" : "password"}
+                            placeholder="Password"
+                            className={`input ${
+                                errors.password && "border-b-2 border-[#e87c03]"
+                            }`}
+                            {...register("password")}
+                        />
+                        {visibility ? (
+                            <FaEyeSlash
+                                className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                onClick={() => setVisibility(false)}
+                            />
+                        ) : (
+                            <FaRegEye
+                                className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                onClick={() => setVisibility(true)}
+                            />
+                        )}
+                        {errors.password && (
+                            <p className="text-sm text-[#e87c03]">
+                                {errors.password.message}
+                            </p>
+                        )}
+                    </div>
                 </div>
                 <div>
                     <button

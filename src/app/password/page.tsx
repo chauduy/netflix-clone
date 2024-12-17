@@ -11,6 +11,8 @@ import { toast } from "react-hot-toast";
 import { logOut } from "@/redux/features/auth/authThunk";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 
 interface Inputs {
     new_password: string;
@@ -21,6 +23,10 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 function Password() {
     const [loading, setLoading] = useState<boolean>(false);
+    const [visibility, setVisibility] = useState({
+        new_password: false,
+        re_type_password: false,
+    });
     const dispatch = useAppDispatch();
     const router = useRouter();
 
@@ -79,32 +85,82 @@ function Password() {
                 </p>
                 <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-y-4">
-                        <div>
+                        <div className="relative md:max-w-[500px]">
                             <input
-                                type="password"
+                                type={
+                                    visibility.new_password
+                                        ? "text"
+                                        : "password"
+                                }
                                 placeholder="New password"
-                                className={`input mb-2 md:max-w-[500px] ${
+                                className={`input w-full mb-2 pr-10 ${
                                     errors.new_password &&
                                     "border-b-2 border-[#e87c03]"
                                 }`}
                                 {...register("new_password")}
                             />
+                            {visibility.new_password ? (
+                                <FaEyeSlash
+                                    className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                    onClick={() =>
+                                        setVisibility({
+                                            ...visibility,
+                                            new_password: false,
+                                        })
+                                    }
+                                />
+                            ) : (
+                                <FaRegEye
+                                    className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                    onClick={() =>
+                                        setVisibility({
+                                            ...visibility,
+                                            new_password: true,
+                                        })
+                                    }
+                                />
+                            )}
                             {errors.new_password && (
                                 <p className="text-sm text-[#e87c03]">
                                     {errors.new_password.message}
                                 </p>
                             )}
                         </div>
-                        <div>
+                        <div className="relative md:max-w-[500px]">
                             <input
-                                type="password"
+                                type={
+                                    visibility.re_type_password
+                                        ? "text"
+                                        : "password"
+                                }
                                 placeholder="Confirm password"
-                                className={`input mb-2 md:max-w-[500px] ${
+                                className={`input mb-2 w-full pr-10 ${
                                     errors.re_type_password &&
                                     "border-b-2 border-[#e87c03]"
                                 }`}
                                 {...register("re_type_password")}
                             />
+                            {visibility.re_type_password ? (
+                                <FaEyeSlash
+                                    className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                    onClick={() =>
+                                        setVisibility({
+                                            ...visibility,
+                                            re_type_password: false,
+                                        })
+                                    }
+                                />
+                            ) : (
+                                <FaRegEye
+                                    className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                    onClick={() =>
+                                        setVisibility({
+                                            ...visibility,
+                                            re_type_password: true,
+                                        })
+                                    }
+                                />
+                            )}
                             {errors.re_type_password && (
                                 <p className="text-sm text-[#e87c03]">
                                     {errors.re_type_password.message}

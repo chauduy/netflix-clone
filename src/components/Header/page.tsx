@@ -6,11 +6,16 @@ import Link from "next/link";
 import MobileMenu from "../MobileMenu/page";
 import Image from "next/image";
 import { Modal as MuiModal } from "@mui/material";
+import { usePathname, useRouter } from "next/navigation";
 
 function Header() {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const [openSearch, setOpenSearch] = useState<boolean>(false);
+    const router = useRouter();
+    const pathname = usePathname();
+    const isHidden =
+        pathname.startsWith("/login") || pathname.startsWith("/registration");
     const searchRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -45,7 +50,9 @@ function Header() {
     }, []);
 
     return (
-        <header className={`${isScrolled ? "bg-[#141414]" : ""}`}>
+        <header
+            className={`${isHidden ? "hidden" : isScrolled ? "bg-[#141414]" : ""}`}
+        >
             <div className="relative flex items-center space-x-4 lg:space-x-8">
                 <Link href={"/"}>
                     <img
@@ -77,6 +84,15 @@ function Header() {
                             <input
                                 className={`bg-black outline-none ${openSearch ? "search-input-open" : "search-input-closed"}`}
                                 placeholder="Titles, people, genres"
+                                onChange={(e) => {
+                                    if (e.target.value) {
+                                        router.push(
+                                            `/search?query=${e.target.value}`
+                                        );
+                                    } else {
+                                        router.push("/");
+                                    }
+                                }}
                             />
                         </div>
                     ) : (
@@ -102,19 +118,88 @@ function Header() {
                     open={open}
                     onClose={() => setOpen(false)}
                 >
-                    <div className="flex flex-col p-4 gap-y-2">
-                        {/* Notification content */}
-                        <Image
-                            width={1000}
-                            height={1000}
-                            alt="Notification Image"
-                            src="/images/noti-1.jpg"
-                            className="w-[100px] h-[60px] rounded"
-                        />
-                        <div className="text-white text-sm">
-                            Suggestions for What to Watch
+                    <>
+                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
+                            <Image
+                                width={1000}
+                                height={1000}
+                                alt="noti-1"
+                                src={"/images/noti-1.jpg"}
+                                className="w-[100px] h-[60px] rounded"
+                            />
+                            <div className="flex flex-col">
+                                <div className="text sm text-white">
+                                    Suggestions for What to Watch
+                                </div>
+                                <div className="text-sm text-white">
+                                    Browse your recommendations.
+                                </div>
+                                <span className="text-gray-400 text-xs">
+                                    6 days ago
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
+                            <Image
+                                width={1000}
+                                height={1000}
+                                alt="noti-2"
+                                src={"/images/noti-2.jpg"}
+                                className="w-[100px] h-[60px] rounded"
+                            />
+                            <div className="flex flex-col">
+                                <div className="text sm text-white">
+                                    Your Latest Top Picks
+                                </div>
+                                <div className="text-sm text-white">
+                                    Find a new favorite.
+                                </div>
+                                <span className="text-gray-400 text-xs">
+                                    1 week ago
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
+                            <Image
+                                width={1000}
+                                height={1000}
+                                alt="noti-4"
+                                src={"/images/noti-3.jpg"}
+                                className="w-[100px] h-[60px] rounded"
+                            />
+                            <div className="flex flex-col">
+                                <div className="text sm text-white">
+                                    Suggestions for Tonight
+                                </div>
+                                <div className="text-sm text-white">
+                                    Explore personalized picks.
+                                </div>
+                                <span className="text-gray-400 text-xs">
+                                    1 weeks ago
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
+                            <Image
+                                width={1000}
+                                height={1000}
+                                alt="noti-3"
+                                src={"/images/noti-4.jpg"}
+                                className="w-[100px] h-[60px] rounded"
+                            />
+                            <div className="flex flex-col">
+                                <div className="text sm text-white">
+                                    Top 10 movies: Vietnam
+                                </div>
+                                <div className="text-sm text-white">
+                                    See what’s popular.
+                                </div>
+                                <span className="text-gray-400 text-xs">
+                                    2 weeks ago
+                                </span>
+                            </div>
+                        </div>
+                    </>
                 </MuiModal>
             </div>
         </header>

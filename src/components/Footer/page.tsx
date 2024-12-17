@@ -1,9 +1,16 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 function Footer() {
+    const pathname = usePathname();
+    const isHidden =
+        pathname.startsWith("/login") || pathname.startsWith("/registration");
     return (
-        <footer className="h-fit py-5 pl-5 md:py-8 md:pl-8 lg:py-10 lg:pl-60 bg-black">
+        <footer
+            className={`${isHidden ? "hidden" : "h-fit py-5 pl-5 md:py-8 md:pl-8 lg:py-10 lg:pl-60 bg-black"}`}
+        >
             <div className="flex items-center space-x-7 pl-2">
                 <FaFacebookF className="h-5 w-5" />
                 <FaInstagram className="h-5 w-5" />

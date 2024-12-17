@@ -13,6 +13,7 @@ import { customErrorMessage } from "@/helper";
 import { FirebaseError } from "firebase/app";
 import { toast } from "react-hot-toast";
 import AppLoading from "@/components/AppLoading/page";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 
 interface Inputs {
     email: string;
@@ -25,6 +26,10 @@ function Registration() {
     const dispatch = useAppDispatch();
     const { loading, user } = useAppSelector((state) => state.auth);
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const [visibility, setVisibility] = useState({
+        password: false,
+        confirmPassword: false,
+    });
     const router = useRouter();
     const formSchema = Yup.object().shape({
         email: Yup.string()
@@ -111,33 +116,81 @@ function Registration() {
                             {errors.email.message}
                         </p>
                     )}
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className={`input ${
-                            errors.password && "border-b-2 border-[#e87c03]"
-                        }`}
-                        {...register("password")}
-                    />
-                    {errors.password && (
-                        <p className="text-sm  text-[#e87c03]">
-                            {errors.password.message}
-                        </p>
-                    )}
-                    <input
-                        type="password"
-                        placeholder="Confirm password"
-                        className={`input ${
-                            errors.confirmPassword &&
-                            "border-b-2 border-[#e87c03]"
-                        }`}
-                        {...register("confirmPassword")}
-                    />
-                    {errors.confirmPassword && (
-                        <p className="text-sm  text-[#e87c03]">
-                            {errors.confirmPassword.message}
-                        </p>
-                    )}
+                    <div className="relative">
+                        <input
+                            type={visibility.password ? "text" : "password"}
+                            placeholder="Password"
+                            className={`input ${
+                                errors.password && "border-b-2 border-[#e87c03]"
+                            }`}
+                            {...register("password")}
+                        />
+                        {visibility.password ? (
+                            <FaEyeSlash
+                                className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                onClick={() =>
+                                    setVisibility({
+                                        ...visibility,
+                                        password: false,
+                                    })
+                                }
+                            />
+                        ) : (
+                            <FaRegEye
+                                className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                onClick={() =>
+                                    setVisibility({
+                                        ...visibility,
+                                        password: true,
+                                    })
+                                }
+                            />
+                        )}
+                        {errors.password && (
+                            <p className="text-sm  text-[#e87c03]">
+                                {errors.password.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className="relative">
+                        <input
+                            type={
+                                visibility.confirmPassword ? "text" : "password"
+                            }
+                            placeholder="Confirm password"
+                            className={`input ${
+                                errors.confirmPassword &&
+                                "border-b-2 border-[#e87c03]"
+                            }`}
+                            {...register("confirmPassword")}
+                        />
+                        {visibility.confirmPassword ? (
+                            <FaEyeSlash
+                                className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                onClick={() =>
+                                    setVisibility({
+                                        ...visibility,
+                                        confirmPassword: false,
+                                    })
+                                }
+                            />
+                        ) : (
+                            <FaRegEye
+                                className="absolute right-3 top-4 text-gray-400 cursor-pointer w-5 h-5"
+                                onClick={() =>
+                                    setVisibility({
+                                        ...visibility,
+                                        confirmPassword: true,
+                                    })
+                                }
+                            />
+                        )}
+                        {errors.confirmPassword && (
+                            <p className="text-sm  text-[#e87c03]">
+                                {errors.confirmPassword.message}
+                            </p>
+                        )}
+                    </div>
                 </div>
                 <div>
                     <button
