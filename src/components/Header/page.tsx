@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { VscBell } from "react-icons/vsc";
 import { RxMagnifyingGlass } from "react-icons/rx";
 import Link from "next/link";
@@ -8,8 +8,10 @@ import Image from "next/image";
 import { Modal as MuiModal } from "@mui/material";
 
 function Header() {
-    const [isScrolled, setIsScrolled] = useState<Boolean>(false);
+    const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
+    const [openSearch, setOpenSearch] = useState<boolean>(false);
+    const searchRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,9 +23,24 @@ function Header() {
         };
 
         window.addEventListener("scroll", handleScroll);
-
         return () => {
             window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                searchRef.current &&
+                !searchRef.current.contains(event.target as Node)
+            ) {
+                setOpenSearch(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
@@ -34,6 +51,7 @@ function Header() {
                     <img
                         src="https://rb.gy/ulxxee"
                         className="w-[40px] cursor-pointer object-contain md:w-[70px] lg:w-[90px]"
+                        alt="Logo"
                     />
                 </Link>
 
@@ -50,11 +68,26 @@ function Header() {
                     <li className="navigationTab">Browse by Languages</li>
                 </ul>
             </div>
+
             <div className="relative flex items-center space-x-4 font-light">
-                <RxMagnifyingGlass className="h-6 w-6" />
-                <p className="hidden text-[13px] font-normal lg:block">Kids</p>
+                <div ref={searchRef}>
+                    {openSearch ? (
+                        <div className="flex items-center w-[250px] bg-black border-[1px] border-white py-1 px-2">
+                            <RxMagnifyingGlass className="h-6 w-6 mr-2" />
+                            <input
+                                className={`bg-black outline-none ${openSearch ? "search-input-open" : "search-input-closed"}`}
+                                placeholder="Titles, people, genres"
+                            />
+                        </div>
+                    ) : (
+                        <RxMagnifyingGlass
+                            className="h-6 w-6 cursor-pointer"
+                            onClick={() => setOpenSearch(true)}
+                        />
+                    )}
+                </div>
                 <VscBell
-                    className="h-6 w-6"
+                    className="h-6 w-6 cursor-pointer"
                     onClick={() => setOpen((prevState) => !prevState)}
                 />
                 <Link href={"/account"}>
@@ -69,88 +102,19 @@ function Header() {
                     open={open}
                     onClose={() => setOpen(false)}
                 >
-                    <>
-                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
-                            <Image
-                                width={1000}
-                                height={1000}
-                                alt="noti-1"
-                                src={"/images/noti-1.jpg"}
-                                className="w-[100px] h-[60px] rounded"
-                            />
-                            <div className="flex flex-col">
-                                <div className="text sm text-white">
-                                    Suggestions for What to Watch
-                                </div>
-                                <div className="text-sm text-white">
-                                    Browse your recommendations.
-                                </div>
-                                <span className="text-gray-400 text-xs">
-                                    6 days ago
-                                </span>
-                            </div>
+                    <div className="flex flex-col p-4 gap-y-2">
+                        {/* Notification content */}
+                        <Image
+                            width={1000}
+                            height={1000}
+                            alt="Notification Image"
+                            src="/images/noti-1.jpg"
+                            className="w-[100px] h-[60px] rounded"
+                        />
+                        <div className="text-white text-sm">
+                            Suggestions for What to Watch
                         </div>
-                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
-                            <Image
-                                width={1000}
-                                height={1000}
-                                alt="noti-2"
-                                src={"/images/noti-2.jpg"}
-                                className="w-[100px] h-[60px] rounded"
-                            />
-                            <div className="flex flex-col">
-                                <div className="text sm text-white">
-                                    Your Latest Top Picks
-                                </div>
-                                <div className="text-sm text-white">
-                                    Find a new favorite.
-                                </div>
-                                <span className="text-gray-400 text-xs">
-                                    1 week ago
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
-                            <Image
-                                width={1000}
-                                height={1000}
-                                alt="noti-4"
-                                src={"/images/noti-3.jpg"}
-                                className="w-[100px] h-[60px] rounded"
-                            />
-                            <div className="flex flex-col">
-                                <div className="text sm text-white">
-                                    Suggestions for Tonight
-                                </div>
-                                <div className="text-sm text-white">
-                                    Explore personalized picks.
-                                </div>
-                                <span className="text-gray-400 text-xs">
-                                    1 weeks ago
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex items-center p-4 gap-x-2 border-b-[1px] border-gray-400">
-                            <Image
-                                width={1000}
-                                height={1000}
-                                alt="noti-3"
-                                src={"/images/noti-4.jpg"}
-                                className="w-[100px] h-[60px] rounded"
-                            />
-                            <div className="flex flex-col">
-                                <div className="text sm text-white">
-                                    Top 10 movies: Vietnam
-                                </div>
-                                <div className="text-sm text-white">
-                                    See what’s popular.
-                                </div>
-                                <span className="text-gray-400 text-xs">
-                                    2 weeks ago
-                                </span>
-                            </div>
-                        </div>
-                    </>
+                    </div>
                 </MuiModal>
             </div>
         </header>

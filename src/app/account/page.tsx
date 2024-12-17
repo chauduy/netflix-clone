@@ -46,7 +46,7 @@ function Account() {
     }
 
     return (
-        <div className="p-4 lg:p-6 md:h-[84vh] lg:h-[54vh]">
+        <div className="p-4 lg:p-6 h-screen">
             <div className="lg:mx-auto lg:max-w-6xl mt-4 md:mt-[10vh] lg:mt-[20vh]">
                 <div className="mb-4 mt-12 flex flex-col lg:flex-row lg:items-center">
                     <h1 className="mr-4 text-2xl text-white lg:text-3xl">
@@ -91,12 +91,18 @@ function Account() {
                             </div>
                             <div className="lg:text-right">
                                 <div>
-                                    <Link href={"/"} className="membershipLink">
+                                    <Link
+                                        href={"/email"}
+                                        className="membershipLink"
+                                    >
                                         Change email
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link href={"/"} className="membershipLink">
+                                    <Link
+                                        href={"/password"}
+                                        className="membershipLink"
+                                    >
                                         Change password
                                     </Link>
                                 </div>
@@ -113,24 +119,36 @@ function Account() {
                             </p>
                             <div className="lg:text-right">
                                 <div>
-                                    <Link href={"/"} className="membershipLink">
+                                    <button
+                                        className="membershipLink"
+                                        onClick={manageSubscription}
+                                    >
                                         Manage payment info
-                                    </Link>
+                                    </button>
                                 </div>
                                 <div>
-                                    <Link href={"/"} className="membershipLink">
+                                    <button
+                                        className="membershipLink"
+                                        onClick={manageSubscription}
+                                    >
                                         Add backup payment method
-                                    </Link>
+                                    </button>
                                 </div>
                                 <div>
-                                    <Link href={"/"} className="membershipLink">
+                                    <button
+                                        className="membershipLink"
+                                        onClick={manageSubscription}
+                                    >
                                         Billing details
-                                    </Link>
+                                    </button>
                                 </div>
                                 <div>
-                                    <Link href={"/"} className="membershipLink">
+                                    <button
+                                        className="membershipLink"
+                                        onClick={manageSubscription}
+                                    >
                                         Change billing day
-                                    </Link>
+                                    </button>
                                 </div>
                             </div>
                         </div>
