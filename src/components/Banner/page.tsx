@@ -69,7 +69,7 @@ function Banner({ netflixOriginals }: Props) {
                                 youtube: {
                                     playerVars: {
                                         cc_lang_pref: 0,
-                                        cc_load_policy: 0,
+                                        cc_load_policy: 3,
                                         disablekb: 0,
                                         fs: 0,
                                         iv_load_policy: 3,
