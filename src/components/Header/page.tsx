@@ -114,7 +114,7 @@ function Header() {
                     />
                 </Link>
                 <MuiModal
-                    className="absolute top-[70px] left-[7vw] md:left-[44vw] lg:left-[69vw] bg-black/70 w-[75vw] md:w-[45vw] lg:w-[25vw] h-fit flex flex-col border border-gray-400 border-t-[2px] border-t-white"
+                    className="!absolute !top-[70px] !left-[7vw] md:!left-[44vw] lg:!left-[69vw] bg-black/70 w-[75vw] md:w-[45vw] lg:w-[25vw] h-fit flex flex-col border border-gray-400 border-t-[2px] border-t-white"
                     open={open}
                     onClose={() => setOpen(false)}
                 >
