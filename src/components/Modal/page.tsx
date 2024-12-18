@@ -125,7 +125,7 @@ function Modal() {
                         playing
                         muted={muted}
                     />
-                    <div className="absolute bottom-10 flex w-full items-center justify-between px-10">
+                    <div className="absolute bottom-10 flex w-full items-center justify-between px-10 z-20">
                         <div className="flex space-x-2">
                             <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
                                 <FaPlay className="h-7 w-7 text-black" />
@@ -156,6 +156,7 @@ function Modal() {
                             )}
                         </button>
                     </div>
+                    <div className="absolute top-0 left-0 z-10 w-full h-full bg-transparent" />
                 </div>
 
                 <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
