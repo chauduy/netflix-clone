@@ -12,10 +12,27 @@ function Footer() {
             className={`${isHidden ? "hidden" : "h-fit py-5 pl-5 md:py-8 md:pl-8 lg:py-10 lg:pl-60 bg-black"}`}
         >
             <div className="flex items-center space-x-7 pl-2">
-                <FaFacebookF className="h-5 w-5" />
-                <FaInstagram className="h-5 w-5" />
-                <FaTwitter className="h-5 w-5" />
-                <FaYoutube className="h-5 w-5" />
+                <Link target={"_self"} href="https://www.facebook.com/netflix/">
+                    <FaFacebookF className="h-5 w-5" />
+                </Link>
+                <Link
+                    target={"_self"}
+                    href="https://www.instagram.com/netflix/"
+                >
+                    <FaInstagram className="h-5 w-5" />
+                </Link>
+                <Link
+                    target={"_self"}
+                    href="https://twitter.com/netflix?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                >
+                    <FaTwitter className="h-5 w-5" />
+                </Link>
+                <Link
+                    target={"_self"}
+                    href="https://www.youtube.com/channel/UCWOA1ZGywLbqmigxE4Qlvuw"
+                >
+                    <FaYoutube className="h-5 w-5" />
+                </Link>
             </div>
             <div className="mt-2 grid grid-cols-2 md:grid-cols-4 lg:max-w-[70vw]">
                 <Link
