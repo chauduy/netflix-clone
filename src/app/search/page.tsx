@@ -58,21 +58,25 @@ function Search() {
                 <h1 className="mb-16 text-2xl text-white lg:text-3xl">
                     Results for {query}
                 </h1>
-                <InfiniteScroll
-                    pageStart={2}
-                    hasMore={totalPage! > currentPage}
-                    loader={
-                        <div className="flex justify-center">
-                            <Loader color="white" />
-                        </div>
-                    }
-                    className="flex flex-wrap gap-x-2 gap-y-8 w-full"
-                    loadMore={loadMoreMovie}
-                >
-                    {movies?.map((movie, index) => (
-                        <Thumbnail key={index} movie={movie} />
-                    ))}
-                </InfiniteScroll>
+                {movies.length > 0 ? (
+                    <InfiniteScroll
+                        pageStart={2}
+                        hasMore={totalPage! > currentPage}
+                        loader={
+                            <div className="flex justify-center">
+                                <Loader color="white" />
+                            </div>
+                        }
+                        className="flex flex-wrap gap-x-2 gap-y-8 w-full"
+                        loadMore={loadMoreMovie}
+                    >
+                        {movies?.map((movie, index) => (
+                            <Thumbnail key={index} movie={movie} />
+                        ))}
+                    </InfiniteScroll>
+                ) : (
+                    <p>No results found</p>
+                )}
             </div>
             <Modal />
         </div>

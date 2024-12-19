@@ -4,14 +4,7 @@ const nextConfig = {
         appDir: true,
     },
     images: {
-        domains: ["image.tmdb.org", "rb.gy"],
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "image.tmdb.org",
-                pathname: "/t/p/**",
-            },
-        ],
+        domains: ["image.tmdb.org", "rb.gy", "themoviedb.org"],
     },
     transpilePackages: ["@stripe/firestore-stripe-payments"],
 };
