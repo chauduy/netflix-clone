@@ -72,7 +72,6 @@ function Banner({ netflixOriginals }: Props) {
                                         disablekb: 0,
                                         fs: 0,
                                         iv_load_policy: 3,
-                                        ref: 0,
                                     },
                                 },
                             }}

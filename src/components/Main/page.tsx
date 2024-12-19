@@ -55,7 +55,7 @@ function Main({
     return (
         <main className="relative pb-12 pl-5 md:pb-16 md:pl-8 lg:pb-[80px] lg:pl-16 bg-black">
             <Banner netflixOriginals={netflixOriginals} />
-            <section className="flex flex-col gap-y-2 md:gap-y-12 mt-[-5vh] md:mt-[-23vh]">
+            <section className="relative flex flex-col gap-y-2 md:gap-y-12 mt-[-5vh] md:mt-[-23vh]">
                 <Row title="Trending Now" movies={trendingNow} />
                 <Row title="Top Rated" movies={topRated} />
                 <Row title="Action Thrillers" movies={actionMovies} />
@@ -65,6 +65,7 @@ function Main({
                 <Row title="Scary Movies" movies={horrorMovies} />
                 <Row title="Romance Movies" movies={romanceMovies} />
                 <Row title="Documentaries" movies={documentaries} />
+                <div className="absolute bg-black w-full top-[150px] left-0 h-full" />
             </section>
             <Modal />
         </main>
