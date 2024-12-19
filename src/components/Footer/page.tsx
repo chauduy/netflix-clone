@@ -130,7 +130,7 @@ function Footer() {
                 This product uses the TMDb API but is not endorsed or certified
                 by TMDb.
             </p>
-            <Link
+            <a
                 href="https://www.themoviedb.org/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -140,7 +140,7 @@ function Footer() {
                     alt="Powered by TMDb"
                     className="mt-5 w-[200px]"
                 />
-            </Link>
+            </a>
         </footer>
     );
 }

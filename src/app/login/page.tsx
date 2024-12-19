@@ -78,12 +78,12 @@ function Login() {
 
     return (
         <div className="relative flex h-[950px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
-            <Link href="/">
+            <a href="/">
                 <img
                     src="https://rb.gy/ulxxee"
                     className="absolute left-4 top-4 w-[160px] cursor-pointer object-contain md:left-10 md:top-6"
                 />
-            </Link>
+            </a>
             <Image
                 src="/bg-login.jpg"
                 fill
@@ -150,23 +150,23 @@ function Login() {
                                 Remember me
                             </p>
                         </div>
-                        <Link
+                        <a
                             href="/support"
                             className="text-[13px] text-[#b3b3b3] hover:underline"
                         >
                             Need help?
-                        </Link>
+                        </a>
                     </div>
                 </div>
 
                 <div className="text-[16px] font-normal text-[#737373]">
                     New to Netflix?{" "}
-                    <Link
+                    <a
                         href="/registration"
                         className="text-white hover:underline"
                     >
                         Sign up now
-                    </Link>
+                    </a>
                 </div>
 
                 <div className="text-[13px] text-[#8c8c8c]">
@@ -184,21 +184,21 @@ function Login() {
                         <p className="mt-8">
                             The information collected by Google reCAPTCHA is
                             subject to the Google{" "}
-                            <Link
+                            <a
                                 href="https://policies.google.com/privacy"
                                 className="text-[#0071eb] hover:underline"
                                 target="_blank"
                             >
                                 Privacy Policy
-                            </Link>{" "}
+                            </a>{" "}
                             and{" "}
-                            <Link
+                            <a
                                 href="https://policies.google.com/terms"
                                 className="text-[#0071eb] hover:underline"
                                 target="_blank"
                             >
                                 Terms of Service
-                            </Link>
+                            </a>
                             , and is used for providing, maintaining, and
                             improving the reCAPTCHA service and for general
                             security purposes (it is not used for personalized

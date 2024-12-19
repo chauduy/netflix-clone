@@ -40,12 +40,12 @@ function Plans({ products }: Props) {
     return (
         <div>
             <header className="border-b-[1px] border-[#e6e6e6] bg-[#141414] py-3 md:py-5">
-                <Link href="/">
+                <a href="/">
                     <img
                         src="https://rb.gy/ulxxee"
                         className="w-[70px] cursor-pointer object-contain md:left-10 md:top-6 md:w-[100px] lg:w-[160px]"
                     />
-                </Link>
+                </a>
                 <button
                     className="text-sm font-medium hover:underline md:text-lg"
                     onClick={handleLogout}

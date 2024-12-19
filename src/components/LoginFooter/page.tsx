@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import a from "next/link";
 import React, { useState } from "react";
 
 function LoginFooter() {
@@ -7,62 +7,62 @@ function LoginFooter() {
 
     return (
         <div className="absolute bottom-0 h-fit w-full bg-black/75 px-6 py-7 md:px-9 md:py-12 md:pl-56 xl:pl-96">
-            <Link
+            <a
                 href="https://help.netflix.com/en/contactus"
                 className="text-[16px] font-normal text-[#737373] hover:underline"
                 target="_blank"
             >
                 Questions? Contact us.
-            </Link>
+            </a>
             <div className="mt-3 grid grid-cols-2 md:grid-cols-4 lg:max-w-[70vw]">
-                <Link
+                <a
                     href="https://help.netflix.com/en/node/412"
                     className="footerLinkLogin"
                     target="_blank"
                 >
                     FAQ
-                </Link>
-                <Link
+                </a>
+                <a
                     href="https://help.netflix.com/en/"
                     className="footerLinkLogin"
                     target="_blank"
                 >
                     Help Center
-                </Link>
-                <Link
+                </a>
+                <a
                     href="https://help.netflix.com/legal/termsofuse"
                     className="footerLinkLogin"
                     target="_blank"
                 >
                     Terms of Use
-                </Link>
-                <Link
+                </a>
+                <a
                     href="https://help.netflix.com/legal/privacy"
                     className="footerLinkLogin"
                     target="_blank"
                 >
                     Privacy
-                </Link>
-                <Link
+                </a>
+                <a
                     href="https://www.netflix.com/vn-en/login#"
                     className="footerLinkLogin"
                     target="_blank"
                 >
                     Cookie Preferences
-                </Link>
-                <Link
+                </a>
+                <a
                     href="https://help.netflix.com/legal/corpinfo"
                     className="footerLinkLogin"
                     target="_blank"
                 >
                     Corporate Information
-                </Link>
+                </a>
             </div>
             <p className="mt-5 text-sm text-gray-500">
                 This product uses the TMDb API but is not endorsed or certified
                 by TMDb.
             </p>
-            <Link
+            <a
                 href="https://www.themoviedb.org/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -72,7 +72,7 @@ function LoginFooter() {
                     alt="Powered by TMDb"
                     className="mt-5 w-[200px]"
                 />
-            </Link>
+            </a>
             <select
                 className="mt-6 min-w-[100px] rounded border border-[#333] bg-[#000] px-5 py-3.5 text-[13px] text-[#737373] outline-none"
                 value={language}
