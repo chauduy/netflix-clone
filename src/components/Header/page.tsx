@@ -12,11 +12,13 @@ function Header() {
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const [openSearch, setOpenSearch] = useState<boolean>(false);
+    const [triggerFocus, setTriggerFocus] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
     const isHidden =
         pathname.startsWith("/login") || pathname.startsWith("/registration");
     const searchRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -48,6 +50,13 @@ function Header() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    useEffect(() => {
+        if (triggerFocus && inputRef.current) {
+            inputRef.current.focus();
+            setTriggerFocus(false); // Reset to prevent unnecessary re-focus
+        }
+    }, [triggerFocus]);
 
     return (
         <header
@@ -82,6 +91,7 @@ function Header() {
                         <div className="flex items-center w-[250px] bg-black border-[1px] border-white py-1 px-2">
                             <RxMagnifyingGlass className="h-6 w-6 mr-2" />
                             <input
+                                ref={inputRef}
                                 className={`bg-black outline-none ${openSearch ? "search-input-open" : "search-input-closed"}`}
                                 placeholder="Titles, people, genres"
                                 onChange={(e) => {
@@ -98,7 +108,10 @@ function Header() {
                     ) : (
                         <RxMagnifyingGlass
                             className="h-6 w-6 cursor-pointer"
-                            onClick={() => setOpenSearch(true)}
+                            onClick={() => {
+                                setOpenSearch(true);
+                                setTriggerFocus(true);
+                            }}
                         />
                     )}
                 </div>
