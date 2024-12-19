@@ -5,6 +5,13 @@ const nextConfig = {
     },
     images: {
         domains: ["image.tmdb.org", "rb.gy"],
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "image.tmdb.org",
+                pathname: "/t/p/**",
+            },
+        ],
     },
     transpilePackages: ["@stripe/firestore-stripe-payments"],
 };
