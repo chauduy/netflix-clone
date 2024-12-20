@@ -58,7 +58,7 @@ function LoginFooter() {
                     Corporate Information
                 </a>
             </div>
-            <p className="mt-5 text-sm text-gray-500">
+            {/* <p className="mt-5 text-sm text-gray-500">
                 This product uses the TMDb API but is not endorsed or certified
                 by TMDb.
             </p>
@@ -72,7 +72,7 @@ function LoginFooter() {
                     alt="Powered by TMDb"
                     className="mt-5 w-[200px]"
                 />
-            </a>
+            </a> */}
             <select
                 className="mt-6 min-w-[100px] rounded border border-[#333] bg-[#000] px-5 py-3.5 text-[13px] text-[#737373] outline-none"
                 value={language}

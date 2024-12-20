@@ -126,7 +126,7 @@ function Footer() {
             <div className="mt-5 text-sm text-gray-500">
                 © 1997-2023 Netflix, Inc.
             </div>{" "}
-            <p className="mt-5 text-sm text-gray-500">
+            {/* <p className="mt-5 text-sm text-gray-500">
                 This product uses the TMDb API but is not endorsed or certified
                 by TMDb.
             </p>
@@ -140,7 +140,7 @@ function Footer() {
                     alt="Powered by TMDb"
                     className="mt-5 w-[200px]"
                 />
-            </a>
+            </a> */}
         </footer>
     );
 }
