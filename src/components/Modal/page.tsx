@@ -38,14 +38,14 @@ function Modal() {
     const { user } = useAppSelector((state: RootState) => state.auth);
 
     // Find all the movies in the user's list
-    useEffect(() => {
-        if (user) {
-            return onSnapshot(
-                collection(db, "customers", user.uid, "myList"),
-                (snapshot) => setMovies(snapshot.docs)
-            );
-        }
-    }, [db, movie?.id]);
+    // useEffect(() => {
+    //     if (user) {
+    //         return onSnapshot(
+    //             collection(db, "customers", user.uid, "myList"),
+    //             (snapshot) => setMovies(snapshot.docs)
+    //         );
+    //     }
+    // }, [db, movie?.id]);
 
     // Check if the movie is already in the user's list
     useEffect(
