@@ -1,4 +1,3 @@
-"use client";
 import { db } from "@/lib/firebase";
 import { Movie } from "@/type";
 import { collection, DocumentData, onSnapshot } from "firebase/firestore";
