@@ -42,7 +42,10 @@ function Modal() {
     //     if (user) {
     //         return onSnapshot(
     //             collection(db, "customers", user.uid, "myList"),
-    //             (snapshot) => setMovies(snapshot.docs)
+    //             (snapshot) => {
+    //                 console.log("ssss", snapshot);
+    //                 setMovies(snapshot.docs);
+    //             }
     //         );
     //     }
     // }, [db, movie?.id]);
@@ -61,34 +64,34 @@ function Modal() {
         dispatch(closeModal());
     };
 
-    const handleList = async () => {
-        if (addedToList) {
-            await deleteDoc(
-                doc(db, "customers", user!.uid, "myList", movie?.id.toString()!)
-            );
+    // const handleList = async () => {
+    //     if (addedToList) {
+    //         await deleteDoc(
+    //             doc(db, "customers", user!.uid, "myList", movie?.id.toString()!)
+    //         );
 
-            toast(`${movie?.title} has been removed from My List`, {
-                duration: 2000,
-                style: toastStyle.default,
-            });
-        } else {
-            await setDoc(
-                doc(
-                    db,
-                    "customers",
-                    user!.uid,
-                    "myList",
-                    movie?.id.toString()!
-                ),
-                { ...movie }
-            );
+    //         toast(`${movie?.title} has been removed from My List`, {
+    //             duration: 2000,
+    //             style: toastStyle.default,
+    //         });
+    //     } else {
+    //         await setDoc(
+    //             doc(
+    //                 db,
+    //                 "customers",
+    //                 user!.uid,
+    //                 "myList",
+    //                 movie?.id.toString()!
+    //             ),
+    //             { ...movie }
+    //         );
 
-            toast(`${movie?.title} has been added to My List`, {
-                duration: 2000,
-                style: toastStyle.default,
-            });
-        }
-    };
+    //         toast(`${movie?.title} has been added to My List`, {
+    //             duration: 2000,
+    //             style: toastStyle.default,
+    //         });
+    //     }
+    // };
 
     return (
         <MuiModal
@@ -131,10 +134,7 @@ function Modal() {
                                 <FaPlay className="h-7 w-7 text-black" />
                                 Play
                             </button>
-                            <button
-                                className="modalButton"
-                                onClick={handleList}
-                            >
+                            <button className="modalButton" onClick={() => {}}>
                                 {addedToList ? (
                                     <HiCheck className="h-7 w-7" />
                                 ) : (
