@@ -1,5 +1,4 @@
 "use client";
-import a from "next/link";
 import React, { useState } from "react";
 
 function LoginFooter() {
