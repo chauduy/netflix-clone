@@ -55,6 +55,6 @@
     "resolutions": {
         "@firebase/app": "0.8.2",
         "@firebase/auth": "0.20.10",
-        "@firebase/firestore": "3.7.1"
+        "@firebase/firestore": "4.7.5"
     }
 }
