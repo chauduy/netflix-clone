@@ -1,19 +1,18 @@
 "use client";
 import React, { useEffect } from "react";
-import Header from "../Header/page";
 import Banner from "../Banner/page";
 import Row from "../Row/page";
-import Footer from "../Footer/page";
 import Modal from "../Modal/page";
 import { Movie } from "@/type";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
-import { Product } from "@stripe/firestore-stripe-payments";
+import { getProducts, Product } from "@stripe/firestore-stripe-payments";
 import Plans from "../Plans/page";
 import useSubscription from "@/hook/useSubscription";
 import AppLoading from "../AppLoading/page";
 import { setProduct } from "@/redux/features/product/productSlice";
 import useList from "@/hook/useList";
+import payments from "@/lib/stripe";
 
 interface MainCategory {
     netflixOriginals: Movie[];
@@ -24,7 +23,6 @@ interface MainCategory {
     horrorMovies: Movie[];
     romanceMovies: Movie[];
     documentaries: Movie[];
-    products: Product[];
 }
 
 function Main({
@@ -36,15 +34,21 @@ function Main({
     horrorMovies,
     romanceMovies,
     documentaries,
-    products,
 }: MainCategory) {
     const { user } = useAppSelector((state: RootState) => state.auth);
+    const { products } = useAppSelector((state: RootState) => state.product);
     const dispatch = useAppDispatch();
     const { subscription } = useSubscription();
     const list = useList(user?.uid);
 
     useEffect(() => {
-        dispatch(setProduct(products));
+        async function getItem() {
+            const products = await getProducts(payments, {
+                includePrices: true,
+                activeOnly: true,
+            });
+            dispatch(setProduct(products));
+        }
     }, [user]);
 
     if (subscription === null) return <AppLoading />;

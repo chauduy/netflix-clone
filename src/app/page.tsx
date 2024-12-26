@@ -1,15 +1,8 @@
 import { use } from "react";
 import requests from "@/api/requests";
-import payments from "@/lib/stripe";
-import { getProducts } from "@stripe/firestore-stripe-payments";
 import Main from "@/components/Main/page";
 
 async function getData() {
-    const products = await getProducts(payments, {
-        includePrices: true,
-        activeOnly: true,
-    });
-
     const [
         netflixOriginals,
         trendingNow,
@@ -39,7 +32,6 @@ async function getData() {
         horrorMovies: horrorMovies.results,
         romanceMovies: romanceMovies.results,
         documentaries: documentaries.results,
-        products: products,
     };
 }
 
@@ -53,7 +45,6 @@ function Home() {
         horrorMovies,
         romanceMovies,
         documentaries,
-        products,
     } = use(getData());
 
     return (
@@ -66,7 +57,6 @@ function Home() {
             horrorMovies={horrorMovies}
             romanceMovies={romanceMovies}
             documentaries={documentaries}
-            products={products}
         />
     );
 }
