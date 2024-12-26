@@ -39,7 +39,7 @@ function Modal() {
 
     // Find all the movies in the user's list
     useEffect(() => {
-        if (user) {
+        if (user && db) {
             return onSnapshot(
                 collection(db, "customers", user.uid, "myList"),
                 (snapshot) => {

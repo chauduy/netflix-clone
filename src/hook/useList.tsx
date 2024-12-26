@@ -9,17 +9,19 @@ function useList(uid: string | undefined) {
     useEffect(() => {
         if (!uid) return;
 
-        return onSnapshot(
-            collection(db, "customers", uid, "myList"),
-            (snapshot) => {
-                setList(
-                    snapshot.docs.map((doc) => ({
-                        id: doc.id,
-                        ...doc.data(),
-                    }))
-                );
-            }
-        );
+        if (db) {
+            return onSnapshot(
+                collection(db, "customers", uid, "myList"),
+                (snapshot) => {
+                    setList(
+                        snapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            ...doc.data(),
+                        }))
+                    );
+                }
+            );
+        }
     }, [db, uid]);
 
     return list;
