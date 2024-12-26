@@ -47,11 +47,12 @@ function Main({
                 includePrices: true,
                 activeOnly: true,
             });
-            await dispatch(setProduct(products));
+            dispatch(setProduct(products));
+            console.log("calling");
         }
 
         getItem();
-    }, [user]);
+    }, []);
 
     if (subscription === null) return <AppLoading />;
 
