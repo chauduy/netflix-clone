@@ -23,5 +23,5 @@ if (getApps().length) {
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);
-
+console.log("asdasd", db);
 export default app;
