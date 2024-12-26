@@ -47,7 +47,7 @@ function Main({
                 includePrices: true,
                 activeOnly: true,
             });
-            dispatch(setProduct(products));
+            await dispatch(setProduct(products));
         }
 
         getItem();
