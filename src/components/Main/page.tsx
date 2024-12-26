@@ -47,8 +47,8 @@ function Main({
                 includePrices: true,
                 activeOnly: true,
             });
-            dispatch(setProduct(products));
             console.log("calling");
+            dispatch(setProduct(products));
         }
 
         getItem();
