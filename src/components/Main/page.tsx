@@ -49,6 +49,8 @@ function Main({
             });
             dispatch(setProduct(products));
         }
+
+        getItem();
     }, [user]);
 
     if (subscription === null) return <AppLoading />;
