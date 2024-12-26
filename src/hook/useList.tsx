@@ -1,3 +1,4 @@
+"use client";
 import { db } from "@/lib/firebase";
 import { Movie } from "@/type";
 import {

@@ -1,3 +1,4 @@
+"use client";
 import { storage } from "@/utils/store";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
