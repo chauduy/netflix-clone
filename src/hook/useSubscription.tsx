@@ -14,6 +14,7 @@ function useSubscription() {
     >(null);
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    console.log("payments", payments);
 
     useEffect(() => {
         // Listen for auth state changes
