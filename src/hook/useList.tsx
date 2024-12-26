@@ -1,6 +1,11 @@
 import { db } from "@/lib/firebase";
 import { Movie } from "@/type";
-import { collection, DocumentData, onSnapshot } from "firebase/firestore";
+import {
+    collection,
+    DocumentData,
+    Firestore,
+    onSnapshot,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 function useList(uid: string | undefined) {
@@ -9,7 +14,7 @@ function useList(uid: string | undefined) {
     useEffect(() => {
         if (!uid) return;
 
-        if (db) {
+        if (db && db instanceof Firestore) {
             return onSnapshot(
                 collection(db, "customers", uid, "myList"),
                 (snapshot) => {

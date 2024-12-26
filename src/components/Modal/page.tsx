@@ -19,6 +19,7 @@ import {
     deleteDoc,
     doc,
     DocumentData,
+    Firestore,
     onSnapshot,
     setDoc,
 } from "firebase/firestore";
@@ -39,7 +40,7 @@ function Modal() {
 
     // Find all the movies in the user's list
     useEffect(() => {
-        if (user && db) {
+        if (user && db && db instanceof Firestore) {
             return onSnapshot(
                 collection(db, "customers", user.uid, "myList"),
                 (snapshot) => {
