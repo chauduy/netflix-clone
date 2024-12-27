@@ -22,7 +22,7 @@ function useSubscription() {
     useEffect(() => {
         // Listen for auth state changes
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-            console.log("trigger auth changed");
+            console.log("trigger auth changed", firebaseUser);
             setUser(firebaseUser);
             setLoading(false);
         });
