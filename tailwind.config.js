@@ -15,9 +15,5 @@ module.exports = {
             netflix: ["NetflixSans"],
         },
     },
-    plugins: [
-        require("tailwindcss-textshadow"),
-        require("tailwind-scrollbar-hide"),
-    ],
-    safelist: ["scrollbar-hide"],
+    plugins: [require("tailwindcss-textshadow")],
 };
