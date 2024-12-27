@@ -32,6 +32,7 @@ function useSubscription() {
 
     useEffect(() => {
         if (!user) return;
+
         const unsubscribeSubscriptionUpdate = onCurrentUserSubscriptionUpdate(
             payments,
             (snapshot) => {
@@ -48,9 +49,9 @@ function useSubscription() {
         return () => unsubscribeSubscriptionUpdate();
     }, [user]);
 
-    if (loading) {
-        return { subscription: null, loading: true };
-    }
+    // if (loading) {
+    //     return { subscription: null, loading: true };
+    // }
 
     return { subscription, loading: false };
 }
