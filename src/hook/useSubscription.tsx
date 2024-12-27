@@ -31,27 +31,25 @@ function useSubscription() {
     }, []);
 
     useEffect(() => {
-        if (!user) return;
+        if (user) {
+            const unsubscribeSubscriptionUpdate =
+                onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
+                    console.log("snapshot", snapshot);
+                    const activeSubscription = snapshot.subscriptions.find(
+                        (subscription) =>
+                            subscription.status === "active" ||
+                            subscription.status === "trialing"
+                    );
+                    setSubscription(activeSubscription || undefined);
+                });
 
-        const unsubscribeSubscriptionUpdate = onCurrentUserSubscriptionUpdate(
-            payments,
-            (snapshot) => {
-                console.log("snapshot", snapshot);
-                const activeSubscription = snapshot.subscriptions.find(
-                    (subscription) =>
-                        subscription.status === "active" ||
-                        subscription.status === "trialing"
-                );
-                setSubscription(activeSubscription || undefined);
-            }
-        );
-
-        return () => unsubscribeSubscriptionUpdate();
+            return () => unsubscribeSubscriptionUpdate();
+        }
     }, [user]);
 
-    // if (loading) {
-    //     return { subscription: null, loading: true };
-    // }
+    if (loading) {
+        return { subscription: null, loading: true };
+    }
 
     return { subscription, loading: false };
 }
