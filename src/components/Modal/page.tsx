@@ -41,12 +41,12 @@ function Modal() {
     // Find all the movies in the user's list
     useEffect(() => {
         if (user && db && db instanceof Firestore) {
-            // return onSnapshot(
-            //     collection(db, "customers", user.uid, "myList"),
-            //     (snapshot) => {
-            //         setMovies(snapshot.docs);
-            //     }
-            // );
+            return onSnapshot(
+                collection(db, "customers", user.uid, "myList"),
+                (snapshot) => {
+                    setMovies(snapshot.docs);
+                }
+            );
         }
     }, [db, movie?.id]);
 

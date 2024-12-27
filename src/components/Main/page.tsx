@@ -6,7 +6,7 @@ import Modal from "../Modal/page";
 import { Movie } from "@/type";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
-import { getProducts, Product } from "@stripe/firestore-stripe-payments";
+import { getProducts } from "@stripe/firestore-stripe-payments";
 import Plans from "../Plans/page";
 import useSubscription from "@/hook/useSubscription";
 import AppLoading from "../AppLoading/page";
@@ -43,12 +43,11 @@ function Main({
 
     useEffect(() => {
         async function getItem() {
-            // const products = await getProducts(payments, {
-            //     includePrices: true,
-            //     activeOnly: true,
-            // });
-            // console.log("calling");
-            dispatch(setProduct(products));
+            const items = await getProducts(payments, {
+                includePrices: true,
+                activeOnly: true,
+            });
+            dispatch(setProduct(items));
         }
 
         getItem();

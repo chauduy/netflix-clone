@@ -19,4 +19,5 @@ module.exports = {
         require("tailwindcss-textshadow"),
         require("tailwind-scrollbar-hide"),
     ],
+    safelist: ["scrollbar-hide"],
 };

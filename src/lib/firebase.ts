@@ -1,4 +1,3 @@
-"use client";
 import { initializeApp, getApp, getApps, FirebaseApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
@@ -14,16 +13,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-let app: FirebaseApp;
-if (getApps().length) {
-    app = getApp();
-} else {
-    app = initializeApp(firebaseConfig);
-}
+const app: FirebaseApp = !getApps().length
+    ? initializeApp(firebaseConfig)
+    : getApp();
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);
-console.log("db", db);
-console.log("auth", auth);
-console.log("app", app);
 export default app;

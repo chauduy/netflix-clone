@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BsCheckLg } from "react-icons/bs";
 import { logOut } from "@/redux/features/auth/authThunk";
@@ -8,7 +8,6 @@ import { Product } from "@stripe/firestore-stripe-payments";
 import PlanTable from "../PlanTable/page";
 import { loadCheckout } from "@/lib/stripe";
 import Loader from "../Loader/page";
-import Link from "next/link";
 
 interface Props {
     products: Product[];
