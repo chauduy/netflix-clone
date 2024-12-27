@@ -43,11 +43,11 @@ function Main({
 
     useEffect(() => {
         async function getItem() {
-            const products = await getProducts(payments, {
-                includePrices: true,
-                activeOnly: true,
-            });
-            console.log("calling");
+            // const products = await getProducts(payments, {
+            //     includePrices: true,
+            //     activeOnly: true,
+            // });
+            // console.log("calling");
             dispatch(setProduct(products));
         }
 
