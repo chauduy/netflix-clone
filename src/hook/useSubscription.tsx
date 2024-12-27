@@ -32,17 +32,17 @@ function useSubscription() {
 
     useEffect(() => {
         if (user) {
-            // const unsubscribeSubscriptionUpdate =
-            //     onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
-            //         console.log("snapshot", snapshot);
-            //         const activeSubscription = snapshot.subscriptions.find(
-            //             (subscription) =>
-            //                 subscription.status === "active" ||
-            //                 subscription.status === "trialing"
-            //         );
-            //         setSubscription(activeSubscription || undefined);
-            //     });
-            // return () => unsubscribeSubscriptionUpdate();
+            const unsubscribeSubscriptionUpdate =
+                onCurrentUserSubscriptionUpdate(payments, (snapshot) => {
+                    console.log("snapshot", snapshot);
+                    const activeSubscription = snapshot.subscriptions.find(
+                        (subscription) =>
+                            subscription.status === "active" ||
+                            subscription.status === "trialing"
+                    );
+                    setSubscription(activeSubscription || undefined);
+                });
+            return () => unsubscribeSubscriptionUpdate();
         }
     }, [user]);
 
