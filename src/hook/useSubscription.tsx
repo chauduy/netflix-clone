@@ -15,10 +15,14 @@ function useSubscription() {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     console.log("payments", payments);
+    console.log("subscription", subscription);
+    console.log("user", user);
+    console.log("loading", loading);
 
     useEffect(() => {
         // Listen for auth state changes
         const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            console.log("trigger auth changed");
             setUser(firebaseUser);
             setLoading(false);
         });

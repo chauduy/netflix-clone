@@ -39,7 +39,6 @@ function Main({
     const { products } = useAppSelector((state: RootState) => state.product);
     const dispatch = useAppDispatch();
     const { subscription } = useSubscription();
-    console.log("subscription", subscription);
     const list = useList(user?.uid);
 
     useEffect(() => {
