@@ -13,11 +13,27 @@ import { customErrorMessage } from "@/helper";
 import AppLoading from "@/components/AppLoading/page";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 import Link from "next/link";
+import styles from "./Index.module.css";
 
 interface Inputs {
     email: string;
     password: string;
 }
+
+const renderSnowflake = () => {
+    const snowflakeArr = ["&#10052;", "&#10053;", "&#10054;"];
+
+    return Array.from({ length: 50 }, (item, index) => {
+        const random = Math.floor(Math.random() * snowflakeArr.length);
+        return (
+            <div
+                key={index}
+                className={styles.snowflake}
+                dangerouslySetInnerHTML={{ __html: snowflakeArr[random] }}
+            />
+        );
+    });
+};
 
 function Login() {
     const [showPolicy, setShowPolicy] = useState<boolean>(false);
@@ -92,7 +108,7 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 space-y-8 rounded bg-black/75 px-6 py-7 md:h-[750px] md:max-w-md md:px-14 md:py-16"
+                className="mt-24 space-y-8 rounded bg-black/75 px-6 py-7 md:h-[750px] md:max-w-md md:px-14 md:py-16 z-[100]"
             >
                 <h1 className="text-4xl font-semibold">Sign In</h1>
                 <div className="h-fit space-y-2">
@@ -209,6 +225,7 @@ function Login() {
             </form>
             <hr className="border border-[#737373] sm:hidden" />
             <LoginFooter />
+            {renderSnowflake()}
         </div>
     );
 }

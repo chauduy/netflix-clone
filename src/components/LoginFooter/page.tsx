@@ -6,7 +6,7 @@ function LoginFooter() {
     const [language, setLanguage] = useState<string>("en");
 
     return (
-        <div className="absolute bottom-0 h-fit w-full bg-black/75 px-6 py-7 md:px-9 md:py-12 md:pl-56 xl:pl-96">
+        <div className="absolute bottom-0 h-fit w-full bg-black/75 px-6 py-7 md:px-9 md:py-12 md:pl-56 xl:pl-96 z-[90]">
             <Link
                 href="https://help.netflix.com/en/contactus"
                 className="text-[16px] font-normal text-[#737373] hover:underline"
