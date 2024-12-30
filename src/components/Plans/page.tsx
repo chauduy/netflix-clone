@@ -54,7 +54,7 @@ function Plans({ products }: Props) {
                 </button>
             </header>
 
-            <main className="z-40 mx-auto max-w-5xl px-5 pb-12 pt-28 transition-all md:px-10">
+            <main className="z-40 mx-auto max-w-5xl px-5 pb-12 pt-28 transition-all md:px-10 md:min-h-[74vh] lg:min-h-0">
                 <h1 className="mb-3 text-2xl font-medium md:text-3xl">
                     {`Choose the plan that's right for you`}
                 </h1>
