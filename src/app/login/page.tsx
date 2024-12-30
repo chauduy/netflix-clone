@@ -14,16 +14,17 @@ import AppLoading from "@/components/AppLoading/page";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 import Link from "next/link";
 import styles from "./Index.module.css";
+import { useViewport } from "@/hook/useViewport";
 
 interface Inputs {
     email: string;
     password: string;
 }
 
-const renderSnowflake = () => {
+const renderSnowflake = (total: number) => {
     const snowflakeArr = ["&#10052;", "&#10053;", "&#10054;"];
 
-    return Array.from({ length: 50 }, (item, index) => {
+    return Array.from({ length: total }, (item, index) => {
         const random = Math.floor(Math.random() * snowflakeArr.length);
         return (
             <div
@@ -40,9 +41,11 @@ function Login() {
     const [isCheckingAuth, setIsCheckingAuth] = useState(true);
     const [loading, setLoading] = useState(false);
     const [visibility, setVisibility] = useState(false);
+    const [total, setTotal] = useState<number>(0);
     const dispatch = useAppDispatch();
     const { user } = useAppSelector((state) => state.auth);
     const router = useRouter();
+    const viewport = useViewport();
 
     useEffect(() => {
         if (user) {
@@ -51,6 +54,16 @@ function Login() {
             setIsCheckingAuth(false);
         }
     }, [user, router]);
+
+    useEffect(() => {
+        if (viewport.width < 768) {
+            setTotal(20);
+            document.documentElement.style.setProperty("--translateY", "920px");
+        } else {
+            setTotal(50);
+            document.documentElement.style.setProperty("--translateY", "955px");
+        }
+    }, [viewport.width]);
 
     const formSchema = Yup.object().shape({
         email: Yup.string()
@@ -93,11 +106,11 @@ function Login() {
     }
 
     return (
-        <div className="relative flex h-[950px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent">
+        <div className="relative flex h-[910px] w-full flex-col bg-black sm:h-[1300px] md:items-center md:bg-transparent overflow-x-hidden">
             <Link href="/">
                 <img
                     src="https://rb.gy/ulxxee"
-                    className="absolute left-4 top-4 w-[160px] cursor-pointer object-contain md:left-10 md:top-6"
+                    className="absolute left-4 top-4 w-[160px] cursor-pointer object-contain md:left-10 md:top-6 z-[110]"
                 />
             </Link>
             <Image
@@ -108,7 +121,7 @@ function Login() {
             />
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="mt-24 space-y-8 rounded bg-black/75 px-6 py-7 md:h-[750px] md:max-w-md md:px-14 md:py-16 z-[100]"
+                className="pt-24 md:mt-24 space-y-8 rounded bg-black/75 px-6 py-7 md:h-[750px] md:max-w-md md:px-14 md:py-16 z-[100]"
             >
                 <h1 className="text-4xl font-semibold">Sign In</h1>
                 <div className="h-fit space-y-2">
@@ -223,9 +236,9 @@ function Login() {
                     )}
                 </div>
             </form>
-            <hr className="border border-[#737373] sm:hidden" />
+            <hr className="border border-[#737373] sm:hidden z-[110]" />
             <LoginFooter />
-            {renderSnowflake()}
+            {renderSnowflake(total)}
         </div>
     );
 }
