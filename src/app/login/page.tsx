@@ -56,7 +56,7 @@ function Login() {
     }, [user, router]);
 
     useEffect(() => {
-        if (viewport.width < 768) {
+        if (viewport.width < 1025) {
             setTotal(20);
             document.documentElement.style.setProperty("--translateY", "920px");
         } else {
