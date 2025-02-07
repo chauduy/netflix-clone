@@ -21,7 +21,7 @@
     --horizontal-drift: -6vw;
     --rotation: -1deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -1s;
 }
 
@@ -30,7 +30,7 @@
     --horizontal-drift: -11vw;
     --rotation: -107deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -2s;
 }
 
@@ -39,7 +39,7 @@
     --horizontal-drift: 5vw;
     --rotation: -181deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -3s;
 }
 
@@ -48,7 +48,7 @@
     --horizontal-drift: 14vw;
     --rotation: 92deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -4s;
 }
 
@@ -57,7 +57,7 @@
     --horizontal-drift: 14vw;
     --rotation: 10deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -5s;
 }
 
@@ -66,7 +66,7 @@
     --horizontal-drift: -9vw;
     --rotation: -114deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -6s;
 }
 
@@ -75,7 +75,7 @@
     --horizontal-drift: -12vw;
     --rotation: -6deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -7s;
 }
 
@@ -84,7 +84,7 @@
     --horizontal-drift: 2vw;
     --rotation: 328deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -8s;
 }
 
@@ -93,7 +93,7 @@
     --horizontal-drift: -1vw;
     --rotation: 305deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -9s;
 }
 
@@ -102,7 +102,7 @@
     --horizontal-drift: 11vw;
     --rotation: -335deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -10s;
 }
 
@@ -111,7 +111,7 @@
     --horizontal-drift: 4vw;
     --rotation: 156deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -11s;
 }
 
@@ -120,7 +120,7 @@
     --horizontal-drift: -1vw;
     --rotation: 98deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -12s;
 }
 
@@ -129,7 +129,7 @@
     --horizontal-drift: -13vw;
     --rotation: -248deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -13s;
 }
 
@@ -138,7 +138,7 @@
     --horizontal-drift: -7vw;
     --rotation: -237deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -14s;
 }
 
@@ -147,7 +147,7 @@
     --horizontal-drift: -15vw;
     --rotation: 232deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -15s;
 }
 
@@ -156,7 +156,7 @@
     --horizontal-drift: -8vw;
     --rotation: 176deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -16s;
 }
 
@@ -165,7 +165,7 @@
     --horizontal-drift: -3vw;
     --rotation: -253deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -17s;
 }
 
@@ -174,7 +174,7 @@
     --horizontal-drift: -14vw;
     --rotation: 192deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -18s;
 }
 
@@ -183,7 +183,7 @@
     --horizontal-drift: -5vw;
     --rotation: -224deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -19s;
 }
 
@@ -192,7 +192,7 @@
     --horizontal-drift: 14vw;
     --rotation: -290deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -20s;
 }
 
@@ -201,7 +201,7 @@
     --horizontal-drift: 6vw;
     --rotation: -6deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -21s;
 }
 
@@ -210,7 +210,7 @@
     --horizontal-drift: 12vw;
     --rotation: -93deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -22s;
 }
 
@@ -219,7 +219,7 @@
     --horizontal-drift: 3vw;
     --rotation: -158deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -23s;
 }
 
@@ -228,7 +228,7 @@
     --horizontal-drift: -3vw;
     --rotation: 324deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -24s;
 }
 
@@ -237,7 +237,7 @@
     --horizontal-drift: 9vw;
     --rotation: -339deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -25s;
 }
 
@@ -246,7 +246,7 @@
     --horizontal-drift: -1vw;
     --rotation: -241deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -26s;
 }
 
@@ -255,7 +255,7 @@
     --horizontal-drift: -9vw;
     --rotation: 320deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -27s;
 }
 
@@ -264,7 +264,7 @@
     --horizontal-drift: 10vw;
     --rotation: 76deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -28s;
 }
 
@@ -273,7 +273,7 @@
     --horizontal-drift: 4vw;
     --rotation: 133deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -29s;
 }
 
@@ -282,7 +282,7 @@
     --horizontal-drift: 15vw;
     --rotation: 77deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -30s;
 }
 
@@ -291,7 +291,7 @@
     --horizontal-drift: -15vw;
     --rotation: 55deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -31s;
 }
 
@@ -300,7 +300,7 @@
     --horizontal-drift: -7vw;
     --rotation: -35deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -32s;
 }
 
@@ -309,7 +309,7 @@
     --horizontal-drift: -5vw;
     --rotation: -12deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -33s;
 }
 
@@ -318,7 +318,7 @@
     --horizontal-drift: 6vw;
     --rotation: -288deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -34s;
 }
 
@@ -327,7 +327,7 @@
     --horizontal-drift: 2vw;
     --rotation: -203deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -35s;
 }
 
@@ -336,7 +336,7 @@
     --horizontal-drift: 12vw;
     --rotation: -144deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -36s;
 }
 
@@ -345,7 +345,7 @@
     --horizontal-drift: -3vw;
     --rotation: 108deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -37s;
 }
 
@@ -354,7 +354,7 @@
     --horizontal-drift: -10vw;
     --rotation: 340deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -38s;
 }
 
@@ -363,7 +363,7 @@
     --horizontal-drift: -4vw;
     --rotation: 334deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -39s;
 }
 
@@ -372,7 +372,7 @@
     --horizontal-drift: 10vw;
     --rotation: 240deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -40s;
 }
 
@@ -381,7 +381,7 @@
     --horizontal-drift: -10vw;
     --rotation: 308deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -41s;
 }
 
@@ -390,7 +390,7 @@
     --horizontal-drift: 9vw;
     --rotation: -155deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -42s;
 }
 
@@ -399,7 +399,7 @@
     --horizontal-drift: -16vw;
     --rotation: -19deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -43s;
 }
 
@@ -408,7 +408,7 @@
     --horizontal-drift: -4vw;
     --rotation: -344deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -44s;
 }
 
@@ -417,7 +417,7 @@
     --horizontal-drift: -9vw;
     --rotation: -113deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -45s;
 }
 
@@ -426,7 +426,7 @@
     --horizontal-drift: -6vw;
     --rotation: 254deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -46s;
 }
 
@@ -435,7 +435,7 @@
     --horizontal-drift: -13vw;
     --rotation: 198deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -47s;
 }
 
@@ -444,7 +444,7 @@
     --horizontal-drift: 4vw;
     --rotation: -103deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -48s;
 }
 
@@ -453,7 +453,7 @@
     --horizontal-drift: 11vw;
     --rotation: 209deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -49s;
 }
 
@@ -462,6 +462,6 @@
     --horizontal-drift: 14vw;
     --rotation: 299deg;
     z-index: 80;
-    animation: snowfall 35s linear infinite;
+    animation: snowfall 25s linear infinite;
     animation-delay: -50s;
 }
