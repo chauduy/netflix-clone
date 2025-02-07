@@ -19,7 +19,7 @@
 .snowflake:nth-child(1) {
     left: 67vw;
     --horizontal-drift: -6vw;
-    --rotation: -1deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -1s;
@@ -28,7 +28,7 @@
 .snowflake:nth-child(2) {
     left: 1vw;
     --horizontal-drift: -11vw;
-    --rotation: -107deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -2s;
@@ -37,7 +37,7 @@
 .snowflake:nth-child(3) {
     left: 14vw;
     --horizontal-drift: 5vw;
-    --rotation: -181deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -3s;
@@ -46,7 +46,7 @@
 .snowflake:nth-child(4) {
     left: 59vw;
     --horizontal-drift: 14vw;
-    --rotation: 92deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -4s;
@@ -55,7 +55,7 @@
 .snowflake:nth-child(5) {
     left: 77vw;
     --horizontal-drift: 14vw;
-    --rotation: 10deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -5s;
@@ -64,7 +64,7 @@
 .snowflake:nth-child(6) {
     left: 11vw;
     --horizontal-drift: -9vw;
-    --rotation: -114deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -6s;
@@ -73,7 +73,7 @@
 .snowflake:nth-child(7) {
     left: 16vw;
     --horizontal-drift: -12vw;
-    --rotation: -6deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -7s;
@@ -82,7 +82,7 @@
 .snowflake:nth-child(8) {
     left: 44vw;
     --horizontal-drift: 2vw;
-    --rotation: 328deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -8s;
@@ -91,7 +91,7 @@
 .snowflake:nth-child(9) {
     left: 95vw;
     --horizontal-drift: -1vw;
-    --rotation: 305deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -9s;
@@ -100,7 +100,7 @@
 .snowflake:nth-child(10) {
     left: 64vw;
     --horizontal-drift: 11vw;
-    --rotation: -335deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -10s;
@@ -109,7 +109,7 @@
 .snowflake:nth-child(11) {
     left: 50vw;
     --horizontal-drift: 4vw;
-    --rotation: 156deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -11s;
@@ -118,7 +118,7 @@
 .snowflake:nth-child(12) {
     left: 22vw;
     --horizontal-drift: -1vw;
-    --rotation: 98deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -12s;
@@ -127,7 +127,7 @@
 .snowflake:nth-child(13) {
     left: 5vw;
     --horizontal-drift: -13vw;
-    --rotation: -248deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -13s;
@@ -136,7 +136,7 @@
 .snowflake:nth-child(14) {
     left: 84vw;
     --horizontal-drift: -7vw;
-    --rotation: -237deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -14s;
@@ -145,7 +145,7 @@
 .snowflake:nth-child(15) {
     left: 8vw;
     --horizontal-drift: -15vw;
-    --rotation: 232deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -15s;
@@ -154,7 +154,7 @@
 .snowflake:nth-child(16) {
     left: 9vw;
     --horizontal-drift: -8vw;
-    --rotation: 176deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -16s;
@@ -163,7 +163,7 @@
 .snowflake:nth-child(17) {
     left: 33vw;
     --horizontal-drift: -3vw;
-    --rotation: -253deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -17s;
@@ -172,7 +172,7 @@
 .snowflake:nth-child(18) {
     left: 22vw;
     --horizontal-drift: -14vw;
-    --rotation: 192deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -18s;
@@ -181,7 +181,7 @@
 .snowflake:nth-child(19) {
     left: 51vw;
     --horizontal-drift: -5vw;
-    --rotation: -224deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -19s;
@@ -190,7 +190,7 @@
 .snowflake:nth-child(20) {
     left: 72vw;
     --horizontal-drift: 14vw;
-    --rotation: -290deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -20s;
@@ -199,7 +199,7 @@
 .snowflake:nth-child(21) {
     left: 38vw;
     --horizontal-drift: 6vw;
-    --rotation: -6deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -21s;
@@ -208,7 +208,7 @@
 .snowflake:nth-child(22) {
     left: 17vw;
     --horizontal-drift: 12vw;
-    --rotation: -93deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -22s;
@@ -217,7 +217,7 @@
 .snowflake:nth-child(23) {
     left: 78vw;
     --horizontal-drift: 3vw;
-    --rotation: -158deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -23s;
@@ -226,7 +226,7 @@
 .snowflake:nth-child(24) {
     left: 32vw;
     --horizontal-drift: -3vw;
-    --rotation: 324deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -24s;
@@ -235,7 +235,7 @@
 .snowflake:nth-child(25) {
     left: 19vw;
     --horizontal-drift: 9vw;
-    --rotation: -339deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -25s;
@@ -244,7 +244,7 @@
 .snowflake:nth-child(26) {
     left: 45vw;
     --horizontal-drift: -1vw;
-    --rotation: -241deg;
+    --rotation: -360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -26s;
@@ -253,7 +253,7 @@
 .snowflake:nth-child(27) {
     left: 58vw;
     --horizontal-drift: -9vw;
-    --rotation: 320deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -27s;
@@ -262,7 +262,7 @@
 .snowflake:nth-child(28) {
     left: 59vw;
     --horizontal-drift: 10vw;
-    --rotation: 76deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -28s;
@@ -271,7 +271,7 @@
 .snowflake:nth-child(29) {
     left: 58vw;
     --horizontal-drift: 4vw;
-    --rotation: 133deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -29s;
@@ -280,7 +280,7 @@
 .snowflake:nth-child(30) {
     left: 64vw;
     --horizontal-drift: 15vw;
-    --rotation: 77deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -30s;
@@ -289,7 +289,7 @@
 .snowflake:nth-child(31) {
     left: 46vw;
     --horizontal-drift: -15vw;
-    --rotation: 55deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -31s;
@@ -298,7 +298,7 @@
 .snowflake:nth-child(32) {
     left: 37vw;
     --horizontal-drift: -7vw;
-    --rotation: -35deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -32s;
@@ -307,7 +307,7 @@
 .snowflake:nth-child(33) {
     left: 70vw;
     --horizontal-drift: -5vw;
-    --rotation: -12deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -33s;
@@ -316,7 +316,7 @@
 .snowflake:nth-child(34) {
     left: 86vw;
     --horizontal-drift: 6vw;
-    --rotation: -288deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -34s;
@@ -325,7 +325,7 @@
 .snowflake:nth-child(35) {
     left: 29vw;
     --horizontal-drift: 2vw;
-    --rotation: -203deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -35s;
@@ -334,7 +334,7 @@
 .snowflake:nth-child(36) {
     left: 81vw;
     --horizontal-drift: 12vw;
-    --rotation: -144deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -36s;
@@ -343,7 +343,7 @@
 .snowflake:nth-child(37) {
     left: 36vw;
     --horizontal-drift: -3vw;
-    --rotation: 108deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -37s;
@@ -352,7 +352,7 @@
 .snowflake:nth-child(38) {
     left: 98vw;
     --horizontal-drift: -10vw;
-    --rotation: 340deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -38s;
@@ -361,7 +361,7 @@
 .snowflake:nth-child(39) {
     left: 35vw;
     --horizontal-drift: -4vw;
-    --rotation: 334deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -39s;
@@ -370,7 +370,7 @@
 .snowflake:nth-child(40) {
     left: 85vw;
     --horizontal-drift: 10vw;
-    --rotation: 240deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -40s;
@@ -379,7 +379,7 @@
 .snowflake:nth-child(41) {
     left: 69vw;
     --horizontal-drift: -10vw;
-    --rotation: 308deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -41s;
@@ -388,7 +388,7 @@
 .snowflake:nth-child(42) {
     left: 65vw;
     --horizontal-drift: 9vw;
-    --rotation: -155deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -42s;
@@ -397,7 +397,7 @@
 .snowflake:nth-child(43) {
     left: 25vw;
     --horizontal-drift: -16vw;
-    --rotation: -19deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -43s;
@@ -406,7 +406,7 @@
 .snowflake:nth-child(44) {
     left: 87vw;
     --horizontal-drift: -4vw;
-    --rotation: -344deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -44s;
@@ -415,7 +415,7 @@
 .snowflake:nth-child(45) {
     left: 12vw;
     --horizontal-drift: -9vw;
-    --rotation: -113deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -45s;
@@ -424,7 +424,7 @@
 .snowflake:nth-child(46) {
     left: 37vw;
     --horizontal-drift: -6vw;
-    --rotation: 254deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -46s;
@@ -433,7 +433,7 @@
 .snowflake:nth-child(47) {
     left: 65vw;
     --horizontal-drift: -13vw;
-    --rotation: 198deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -47s;
@@ -442,7 +442,7 @@
 .snowflake:nth-child(48) {
     left: 83vw;
     --horizontal-drift: 4vw;
-    --rotation: -103deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -48s;
@@ -451,7 +451,7 @@
 .snowflake:nth-child(49) {
     left: 47vw;
     --horizontal-drift: 11vw;
-    --rotation: 209deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -49s;
@@ -460,7 +460,7 @@
 .snowflake:nth-child(50) {
     left: 15vw;
     --horizontal-drift: 14vw;
-    --rotation: 299deg;
+    --rotation: 360deg;
     z-index: 80;
     animation: snowfall 25s linear infinite;
     animation-delay: -50s;
