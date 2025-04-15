@@ -73,18 +73,6 @@ function LoginFooter() {
                     className="mt-5 w-[200px]"
                 />
             </Link>
-            <select
-                className="mt-6 min-w-[100px] rounded border border-[#333] bg-[#000] px-5 py-3.5 text-[13px] text-[#737373] outline-none"
-                value={language}
-                onChange={(e) => {
-                    setLanguage(e.target.value);
-                }}
-            >
-                <option value="en" data-icon="glyphicon-star">
-                    English
-                </option>
-                <option value="vn">Tiếng Việt</option>
-            </select>
         </div>
     );
 }
