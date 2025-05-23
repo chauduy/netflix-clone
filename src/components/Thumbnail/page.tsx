@@ -14,7 +14,7 @@ function Thumbnail({ movie }: Props) {
 
     return (
         <div
-            className={`relative cursor-pointer transition duration-200 ease-out min-w-[43vw] min-h-[100px] md:min-w-[100%/4.5] lg:min-w-[calc(100%/6.5)] lg:min-h-[18vh] ${movie?.backdrop_path || movie?.poster_path ? "hover:z-30 hover:scale-125" : ""}`}
+            className={`relative flex-shrink-0 cursor-pointer transition duration-200 ease-out w-[43vw] h-[100px] max-w-[170px] md:w-[calc(100%/4.5)] md:h-[120px] md:max-w-[190px] lg:w-[calc(100%/6.5)] lg:h-[125px] lg:max-w-[230px] xl:h-[140px] 2xl:max-w-[280px] 2xl:h-[170px] ${movie?.backdrop_path || movie?.poster_path ? "hover:z-30 hover:scale-125" : ""}`}
             onClick={() => {
                 dispatch(setModalMovie(movie));
                 dispatch(fetchTrailer({ movie: movie }));

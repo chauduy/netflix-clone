@@ -101,7 +101,7 @@ function Modal() {
                     handleClose();
                 }
             }}
-            className="fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md px-3 scrollbar-hide md:px-8"
+            className="fixed !top-[5%] left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll rounded-md px-3 scrollbar-hide md:px-8"
             slotProps={{
                 backdrop: { sx: { opacity: "0.7 !important" } },
             }}
@@ -128,10 +128,10 @@ function Modal() {
                         playing
                         muted={muted}
                     />
-                    <div className="absolute bottom-10 flex w-full items-center justify-between px-10 z-20">
+                    <div className="absolute bottom-3 md:bottom-8 flex w-full items-center justify-between px-5 md:px-10 z-20">
                         <div className="flex space-x-2">
-                            <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
-                                <FaPlay className="h-7 w-7 text-black" />
+                            <button className="flex items-center gap-x-2 rounded bg-white h-7 px-4 md:h-11 md:px-8 text-xs md:text-xl font-bold text-black transition hover:bg-[#e6e6e6]">
+                                <FaPlay className="w-4 h-4 md:h-7 md:w-7 text-black" />
                                 Play
                             </button>
                             <button
@@ -139,13 +139,13 @@ function Modal() {
                                 onClick={handleList}
                             >
                                 {addedToList ? (
-                                    <HiCheck className="h-7 w-7" />
+                                    <HiCheck className="w-4 h-4 md:h-7 md:w-7" />
                                 ) : (
-                                    <AiOutlinePlus className="h-7 w-7" />
+                                    <AiOutlinePlus className="w-4 h-4 md:h-7 md:w-7" />
                                 )}
                             </button>
                             <button className="modalButton">
-                                <HiOutlineThumbUp className="h-7 w-7" />
+                                <HiOutlineThumbUp className="w-4 h-4 md:h-7 md:w-7" />
                             </button>
                         </div>
                         <button
@@ -153,9 +153,9 @@ function Modal() {
                             onClick={() => setMuted(!muted)}
                         >
                             {muted ? (
-                                <HiOutlineVolumeUp className="h-6 w-6" />
+                                <HiOutlineVolumeUp className="w-4 h-4 md:h-7 md:w-7" />
                             ) : (
-                                <HiOutlineVolumeOff className="h-6 w-6" />
+                                <HiOutlineVolumeOff className="w-4 h-4 md:h-7 md:w-7" />
                             )}
                         </button>
                     </div>
@@ -164,19 +164,28 @@ function Modal() {
 
                 <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
                     <div className="space-y-6 text-lg">
-                        <div className="flex items-center space-x-2 text-sm">
-                            <p className="font-semibold text-green-400">
-                                {movie?.vote_average &&
-                                    Math.floor(movie.vote_average * 10)}
-                                % Match
+                        <div className="flex md:items-center md:space-x-2 text-sm flex-col md:flex-row">
+                            <p className="text-lg lg:text-xl font-bold">
+                                {movie?.title || movie?.name}
                             </p>
-                            <p className="font-light">{movie?.release_date}</p>
-                            <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
-                                HD
+                            <div className="flex items-center gap-x-2 mt-1 md:mt-0">
+                                <p className="font-semibold text-green-400">
+                                    {movie?.vote_average &&
+                                        Math.floor(movie.vote_average * 10)}
+                                    % Match
+                                </p>
+                                <p className="font-light">
+                                    {movie?.release_date}
+                                </p>
+                                <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs w-fit">
+                                    HD
+                                </div>
                             </div>
                         </div>
                         <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
-                            <p className="w-5/6">{movie?.overview}</p>
+                            <p className="w-5/6 text-[16px]">
+                                {movie?.overview}
+                            </p>
                             <div className="flex flex-col space-y-3 text-sm">
                                 {genres && (
                                     <div>
